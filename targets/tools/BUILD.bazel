@@ -1,0 +1,16 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+py_binary(
+    name = "flash",
+    srcs = ["flash.py"],
+    data = [
+        "//:app.elf",
+        "@openocd//:all",
+    ],
+    deps = [
+        "@pypi_pyserial//:pkg",
+        "@rules_python//python/runfiles",
+    ],
+)

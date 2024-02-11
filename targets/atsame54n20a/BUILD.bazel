@@ -1,0 +1,17 @@
+load(
+    "@pigweed//pw_build:pigweed.bzl",
+    "pw_linker_script",
+)
+
+package(default_visibility = ["//visibility:public"])
+
+pw_linker_script(
+    name = "linker_script",
+    linker_script = "@atsame54_device_pack//:gcc/gcc/same54n20a_flash.ld",
+)
+
+cc_library(
+    name = "pre_init",
+    deps = ["@atsame54_device_pack//:same54n20a_deps"],
+    alwayslink = 1,
+)

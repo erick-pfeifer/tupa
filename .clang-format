@@ -1,0 +1,13 @@
+BasedOnStyle: Google
+AccessModifierOffset: -1
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+BinPackArguments: false
+BinPackParameters: false
+CompactNamespaces: false
+DerivePointerAlignment: false
+PointerAlignment: Left
+SortIncludes: true
+SpacesInLineCommentPrefix:
+  Maximum: 1
+  Minimum: 1
