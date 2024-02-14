@@ -18,9 +18,7 @@ default_args = {
   # Default args used for python virtual environment and in //BUILD.gn
   pw_build_PYTHON_BUILD_VENV = "//:project_build_venv"
 
-  pw_build_PIP_CONSTRAINTS = [
-    "//third_party/pigweed/pw_env_setup/py/pw_env_setup/virtualenv_setup/constraint.list",
-  ]
+  pw_build_PIP_CONSTRAINTS = [ "//third_party/pigweed/pw_env_setup/py/pw_env_setup/virtualenv_setup/constraint.list" ]
 
   pw_build_PIP_REQUIREMENTS = [ "//third_party/pigweed/pw_env_setup/py/pw_env_setup/virtualenv_setup/pigweed_upstream_requirements.txt" ]
 }

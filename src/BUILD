@@ -12,6 +12,7 @@ cc_library(
     deps = [
         "//src/bsp/atsame54n20a:init",
         "//src/bsp/atsame54n20a:peripheral",
+        "//src/bsp/wrapper/sqr_wave",
         "@atsame54_device_pack//:same54n20a_deps",
     ],
 )

@@ -20,7 +20,10 @@ PROJECT_ROOT = Path(os.environ['PROJECT_ROOT'])
 
 REPOS = (PROJECT_ROOT, )
 
-PATH_EXCLUSIONS = [re.compile(r'^.gitmodules'), re.compile(r'^src/bsp/.*')]
+PATH_EXCLUSIONS = [
+    re.compile(r'^.gitmodules'),
+    re.compile(r'^src/bsp/atsame54n20a.*')
+]
 
 TODO_CHECK_PATTERN = re.compile(r'(?:\bTODO\(#issue-\d+(?:, ?b/\d+)*\).*\w)|'
                                 r'(?:\bTODO: #issue-\d+(?:, ?b/\d+)* - )')
