@@ -14,6 +14,7 @@ cc_library(
         "//src/bsp/atsame54n20a:peripheral",
         "//src/bsp/wrapper/sqr_wave",
         "@atsame54_device_pack//:same54n20a_deps",
+        "@pigweed//pw_sys_io",
     ],
 )
 

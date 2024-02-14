@@ -3,6 +3,7 @@ def _device_transition_impl(settings, attr):
     _ignore = attr
     return {
         "//command_line_option:platforms": "//platforms:device",
+        "@pigweed//targets:pw_sys_io_backend": "//src/pigweed_backends/pw_sys_io_baremetal:impl",
     }
 
 _device_transition = transition(
@@ -10,6 +11,7 @@ _device_transition = transition(
     inputs = [],
     outputs = [
         "//command_line_option:platforms",
+        "@pigweed//targets:pw_sys_io_backend",
     ],
 )
 
