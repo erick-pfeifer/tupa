@@ -17,11 +17,10 @@ from pw_presubmit import (PresubmitContext, cli, cpp_checks, format_code,
 __LOG = logging.getLogger(__name__)
 
 PROJECT_ROOT = Path(os.environ['PROJECT_ROOT'])
-PIGWEED_ROOT = PROJECT_ROOT / 'pigweed'
 
 REPOS = (PROJECT_ROOT, )
 
-PATH_EXCLUSIONS = [re.compile(r'^.gitmodules')]
+PATH_EXCLUSIONS = [re.compile(r'^.gitmodules'), re.compile(r'^src/bsp/.*')]
 
 TODO_CHECK_PATTERN = re.compile(r'(?:\bTODO\(#issue-\d+(?:, ?b/\d+)*\).*\w)|'
                                 r'(?:\bTODO: #issue-\d+(?:, ?b/\d+)* - )')

@@ -14,3 +14,11 @@ py_binary(
         "@rules_python//python/runfiles",
     ],
 )
+
+py_binary(
+    name = "miniterm",
+    srcs = ["miniterm.py"],
+    deps = [
+        "@pypi_pyserial//:pkg",
+    ],
+)

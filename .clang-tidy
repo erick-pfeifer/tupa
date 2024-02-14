@@ -71,11 +71,7 @@ Checks: >
   readability-redundant-smartptr-get,
   readability-string-compare,
 
-WarningsAsErrors: >
-  *,
-  -clang-diagnostic-unused-command-line-argument,
-  -cppcoreguidelines-avoid-const-or-ref-data-members,
-  -cppcoreguidelines-use-default-member-init,
+WarningsAsErrors: *
 
 HeaderFilterRegex: '.*'
 

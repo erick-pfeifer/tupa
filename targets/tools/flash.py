@@ -5,7 +5,7 @@ import subprocess
 from rules_python.python.runfiles import runfiles
 from serial.tools import list_ports
 
-_BINARY_PATH = "demo_uart/app.elf"
+_BINARY_PATH = "tupa/app.elf"
 _OPENOCD_PATH = "openocd/bin/openocd"
 _OPENOCD_CONFIG_PATH = "openocd/scripts/board/microchip_same54_xplained_pro.cfg"
 

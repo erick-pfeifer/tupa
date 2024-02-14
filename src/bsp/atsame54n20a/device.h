@@ -1,22 +1,20 @@
 /*******************************************************************************
- System Interrupts File
+  Device Header File
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    interrupt.c
+    device.h
 
   Summary:
-    Interrupt vectors mapping
+    This file includes the selected device from within the project.
+    The device will provide access to respective device packs.
 
   Description:
-    This file maps all the interrupt vectors to their corresponding
-    implementations. If a particular module interrupt is used, then its ISR
-    definition can be found in corresponding PLIB source file. If a module
-    interrupt is not used, then its ISR implementation is mapped to dummy
-    handler.
- *******************************************************************************/
+    None
+
+*******************************************************************************/
 
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
@@ -40,21 +38,28 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
+*******************************************************************************/
 // DOM-IGNORE-END
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: Included Files
-// *****************************************************************************
-// *****************************************************************************
-#include "interrupts.h"
-#include "definitions.h"
+#ifndef DEVICE_H
+#define DEVICE_H
 
-void SERCOM2_0_Handler() { SERCOM2_USART_InterruptHandler(); }
+#pragma GCC diagnostic push
+#ifndef __cplusplus
+#pragma GCC diagnostic ignored "-Wnested-externs"
+#endif
+#pragma GCC diagnostic ignored "-Wsign-conversion"
+#pragma GCC diagnostic ignored "-Wattributes"
+#pragma GCC diagnostic ignored "-Wundef"
+#ifndef DONT_USE_PREDEFINED_CORE_HANDLERS
+    #define DONT_USE_PREDEFINED_CORE_HANDLERS
+#endif //DONT_USE_PREDEFINED_CORE_HANDLERS
+#ifndef DONT_USE_PREDEFINED_PERIPHERALS_HANDLERS
+    #define DONT_USE_PREDEFINED_PERIPHERALS_HANDLERS
+#endif //DONT_USE_PREDEFINED_PERIPHERALS_HANDLERS
+#include "same54p20a.h"
+#pragma GCC diagnostic pop
+#include "device_cache.h"
+#include "toolchain_specifics.h"
 
-void SERCOM2_1_Handler() { SERCOM2_USART_InterruptHandler(); }
-
-void SERCOM2_2_Handler() { SERCOM2_USART_InterruptHandler(); }
-
-void SERCOM2_OTHER_Handler() { SERCOM2_USART_InterruptHandler(); }
+#endif //DEVICE_H
