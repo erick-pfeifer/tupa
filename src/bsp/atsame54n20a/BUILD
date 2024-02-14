@@ -21,18 +21,23 @@ cc_library(
     "peripheral/nvmctrl/plib_nvmctrl.c",
     "peripheral/port/plib_port.c",
     "peripheral/sercom/usart/plib_sercom2_usart.c",
+    "peripheral/tcc/plib_tcc0.c",
+    "peripheral/systick/plib_systick.c",
   ],
 
   copts = [
     "-Wno-old-style-declaration",
   ],
   hdrs = [
+    "peripheral/systick/plib_systick.h",
     "peripheral/clock/plib_clock.h",
     "peripheral/cmcc/plib_cmcc.h",
     "peripheral/evsys/plib_evsys.h",
     "peripheral/nvic/plib_nvic.h",
     "peripheral/nvmctrl/plib_nvmctrl.h",
     "peripheral/port/plib_port.h",
+    "peripheral/tcc/plib_tcc0.h",
+    "peripheral/tcc/plib_tcc_common.h",
     "peripheral/sercom/usart/plib_sercom2_usart.h",
     "peripheral/sercom/usart/plib_sercom_usart_common.h",
   ],
@@ -55,9 +60,6 @@ cc_library(
       "-Wno-unknown-pragmas",
       "-Wno-unused-parameter",
       "-Wno-missing-attributes",
-    ],
-    hdrs = [
-      "definitions.h",
     ],
     deps = [
       ":peripheral",

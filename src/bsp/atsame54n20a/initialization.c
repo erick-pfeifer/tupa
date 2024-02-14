@@ -141,6 +141,11 @@ void SYS_Initialize ( void* data )
 
     EVSYS_Initialize();
 
+    TCC0_CompareInitialize();
+
+  	SYSTICK_TimerInitialize();
+
+
 
 
     /* MISRAC 2012 deviation block start */
