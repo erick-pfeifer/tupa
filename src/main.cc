@@ -2,7 +2,7 @@
 #include <string_view>
 
 #include "definitions.h"
-#include "pw_sys_io/sys_io.h"
+#include "pw_log/shorter.h"
 #include "sqr_wave/sqr_wave.h"
 
 int main() {
@@ -11,7 +11,7 @@ int main() {
   size_t cnt = 0;
   tupa::sqr_wave::SqrWave wave(20000, true);
   while (true) {
-    pw::sys_io::WriteLine("Print from Sys IO.");
+    INF("Print from Sys IO.");
     while (++cnt % kCntMax != 0) {
     }
   }
