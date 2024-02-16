@@ -6,8 +6,8 @@
 
 namespace tupa::sqr_wave {
 
-inline constexpr uint32_t kFreqHzDefault = 50000;
-inline constexpr uint32_t kFreqHzMax = 200000;
+inline constexpr uint32_t kFreqHzDefault = 1000;
+inline constexpr uint32_t kFreqHzMax = 7000;
 inline constexpr bool kIsEnabledDefault = true;
 
 inline constexpr uint32_t kTicksPerSecond = (CPU_CLOCK_FREQUENCY / 4) - 50000;
