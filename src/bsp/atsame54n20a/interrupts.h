@@ -66,7 +66,6 @@ void UsageFault_Handler (void);
 void DebugMonitor_Handler (void);
 void SERCOM2_USART_InterruptHandler (void);
 void TCC0_OTHER_InterruptHandler (void);
-void TCC0_MC0_InterruptHandler (void);
 
 
 #endif // INTERRUPTS_H

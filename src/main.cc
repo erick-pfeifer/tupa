@@ -9,11 +9,14 @@ int main() {
   SYS_Initialize(nullptr);
   constexpr size_t kCntMax = 1000000;
   size_t cnt = 0;
-  tupa::sqr_wave::SqrWave wave(500, true);
+  tupa::sqr_wave::SqrWave wave(false);
+  LED_Set();
   while (true) {
-    INF("Print from Sys IO.");
+    // LED_Toggle();
+    INF("Current count: %d.", wave.GetBurstCount());
     while (++cnt % kCntMax != 0) {
     }
+    wave.RunBurst(3);
   }
   return 0;
 }

@@ -6,5 +6,6 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         "//src/bsp/atsame54n20a:peripheral",
+        "@pigweed//pw_log",
     ],
 )
