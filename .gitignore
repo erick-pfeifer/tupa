@@ -16,3 +16,9 @@ build_overrides/pigweed_environment.gni
 # Tools
 *.pyc
 __pycache__/
+/third_party/mplabx/xplained_pro_bsp.X/build/
+/third_party/mplabx/xplained_pro_bsp.X/dist/
+/third_party/mplabx/xplained_pro_bsp.X/debug/
+/third_party/mplabx/xplained_pro_bsp.X/.generated_files/
+/third_party/mplabx/xplained_pro_bsp.X/nbproject/Makefile*
+/third_party/mplabx/xplained_pro_bsp.X/mcc-manifest-autosave.yml
