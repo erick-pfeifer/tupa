@@ -1,5 +1,6 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+
 load("//:platform_transition.bzl", "device_cc_binary")
+load("@hedron_compile_commands//:refresh_compile_commands.bzl", "refresh_compile_commands")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -8,7 +9,9 @@ device_cc_binary(
     binary = "//src:device_application",
 )
 
-cc_binary(
-    name = "host_build",
-    deps = ["//src:main"],
+refresh_compile_commands(
+    name = "compile_commands_device",
+    targets = {
+      "//:app.elf": "--cpu=armv7e-m",
+    },
 )
