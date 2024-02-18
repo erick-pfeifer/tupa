@@ -92,6 +92,15 @@
 #define LED_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 18U)) & 0x01U)
 #define LED_PIN                  PORT_PIN_PC18
 
+/*** Macros for BTN_1 pin ***/
+#define BTN_1_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
+#define BTN_1_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))
+#define BTN_1_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 31U))
+#define BTN_1_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 31U))
+#define BTN_1_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
+#define BTN_1_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
+#define BTN_1_PIN                  PORT_PIN_PB31
+
 /*** Macros for SWITCH_1 pin ***/
 #define SWITCH_1_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 1U))
 #define SWITCH_1_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 1U))

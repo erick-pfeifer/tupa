@@ -13,15 +13,11 @@ void IsrCallback(uint32_t, uintptr_t obj) {
     return;
   }
 
-  if ((!wave->get_pin_state_()) && wave->is_burst_enabled_ &&
-      (--wave->burst_count_ == 0u)) {
+  if ((wave->is_burst_enabled_) &&
+      ((!wave->get_pin_state_()) && (--wave->burst_count_ == 0u))) {
     wave->StopBurst();
-    DBG_Clear();
-    return;
   }
 }
-
-SqrWave::~SqrWave() { TCC0_CompareStop(); }
 
 void SqrWave::SetFreqHz(const uint32_t freq_hz) {
   uint32_t ticks =
@@ -32,9 +28,10 @@ void SqrWave::SetFreqHz(const uint32_t freq_hz) {
 }
 
 void SqrWave::SetEnable(const bool is_enabled) {
-  if (is_enabled) {
+  if (is_enabled && (!is_enabled_)) {
+    TCC0_Compare24bitCounterSet(0);
     TCC0_CompareStart();
-  } else {
+  } else if (!is_enabled) {
     TCC0_CompareStop();
     TCC0_Compare24bitCounterSet(0);
   }
@@ -55,8 +52,6 @@ bool SqrWave::RunBurst(const size_t count) {
   SetEnable(false);
   burst_count_ = count;
   is_burst_enabled_ = true;
-  INF("Burst count is starting. count: %d.", burst_count_);
-  DBG_Set();
   SetEnable(true);
   return true;
 }

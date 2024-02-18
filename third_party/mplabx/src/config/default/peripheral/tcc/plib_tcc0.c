@@ -55,6 +55,7 @@
 
 #include "interrupts.h"
 #include "plib_tcc0.h"
+#include "port/plib_port.h"
 
 
 
@@ -95,9 +96,9 @@ void TCC0_CompareInitialize( void )
     TCC0_REGS->TCC_WEXCTRL = TCC_WEXCTRL_OTMX(0UL);
 
 
-    
+
     TCC0_REGS->TCC_PER = 5000U;
-    
+
     TCC0_REGS->TCC_CC[0] = 1200U;
     TCC0_REGS->TCC_CC[1] = 24U;
     TCC0_REGS->TCC_CC[2] = 24U;
@@ -105,6 +106,7 @@ void TCC0_CompareInitialize( void )
     TCC0_REGS->TCC_CC[4] = 24U;
     TCC0_REGS->TCC_CC[5] = 24U;
 
+    TCC0_REGS->TCC_INTENCLR =(TCC_INTENSET_MC0_Msk);
     /* Clear all interrupt flags */
     TCC0_REGS->TCC_INTFLAG = TCC_INTFLAG_Msk;
 
@@ -149,7 +151,7 @@ void TCC0_CompareCommandSet(TCC_COMMAND command)
     while((TCC0_REGS->TCC_SYNCBUSY) != 0U)
     {
         /* Wait for Write Synchronization */
-    }    
+    }
 }
 
 /* Get the current counter value */
@@ -232,7 +234,7 @@ void __attribute__((used)) TCC0_MC0_InterruptHandler(void)
     uint32_t status;
     /* Additional local variable to prevent MISRA C violations (Rule 13.x) */
     uintptr_t context;
-    context = TCC0_CallbackObject.context;                
+    context = TCC0_CallbackObject.context;
     status = TCC_INTFLAG_MC0_Msk;
     /* Clear interrupt flags */
     TCC0_REGS->TCC_INTFLAG = TCC_INTFLAG_MC0_Msk;
@@ -243,4 +245,3 @@ void __attribute__((used)) TCC0_MC0_InterruptHandler(void)
     }
 
 }
-  

@@ -11,7 +11,7 @@ using IsrCallbackType = void (*)(long unsigned int, unsigned int);
 using GetStateStateFunction = bool (*)(void);
 
 inline constexpr uint32_t kFreqHzDefault = 1000;
-inline constexpr uint32_t kFreqHzMax = 7000;
+inline constexpr uint32_t kFreqHzMax = 6000;
 inline constexpr bool kIsEnabledDefault = true;
 
 inline constexpr uint32_t kTicksPerSecond = (CPU_CLOCK_FREQUENCY / 4) - 50000;
@@ -35,7 +35,7 @@ class SqrWave {
                                  reinterpret_cast<uintptr_t>(this));
   }
 
-  ~SqrWave();
+  ~SqrWave() { TCC0_CompareStop(); }
 
   void SetEnable(const bool is_enabled);
   inline bool GetEnable() const { return is_enabled_; }
@@ -44,6 +44,7 @@ class SqrWave {
   inline uint32_t GetFreqHz() const { return freq_hz_; }
 
   bool RunBurst(const size_t count);
+  inline bool IsBurstRunning() const { return is_burst_enabled_; }
   void StopBurst();
   inline size_t GetBurstCount() const { return burst_count_; }
 
