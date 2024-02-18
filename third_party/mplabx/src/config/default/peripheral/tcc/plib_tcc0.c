@@ -110,7 +110,7 @@ void TCC0_CompareInitialize( void )
 
     /* Enable period Interrupt */
     TCC0_CallbackObject.callback_fn = NULL;
-    TCC0_REGS->TCC_INTENSET =(TCC_INTENSET_OVF_Msk);
+    TCC0_REGS->TCC_INTENSET =(TCC_INTENSET_MC0_Msk);
 
     while((TCC0_REGS->TCC_SYNCBUSY) != 0U)
     {
@@ -225,22 +225,22 @@ void TCC0_CompareCallbackRegister( TCC_CALLBACK callback, uintptr_t context )
     TCC0_CallbackObject.context = context;
 }
 
+
 /* Interrupt Handler */
-void __attribute__((used)) TCC0_OTHER_InterruptHandler(void)
+void __attribute__((used)) TCC0_MC0_InterruptHandler(void)
 {
     uint32_t status;
     /* Additional local variable to prevent MISRA C violations (Rule 13.x) */
     uintptr_t context;
-    context = TCC0_CallbackObject.context;            
-    status = (TCC0_REGS->TCC_INTFLAG & 0xFFFFU);
+    context = TCC0_CallbackObject.context;                
+    status = TCC_INTFLAG_MC0_Msk;
     /* Clear interrupt flags */
-    TCC0_REGS->TCC_INTFLAG = 0xFFFFU;
+    TCC0_REGS->TCC_INTFLAG = TCC_INTFLAG_MC0_Msk;
     (void)TCC0_REGS->TCC_INTFLAG;
     if (TCC0_CallbackObject.callback_fn != NULL)
-    { 
+    {
         TCC0_CallbackObject.callback_fn(status, context);
     }
 
 }
-
   

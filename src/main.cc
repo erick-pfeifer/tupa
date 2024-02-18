@@ -1,5 +1,4 @@
 #include <cstddef>
-#include <string_view>
 
 #include "definitions.h"
 #include "pw_log/shorter.h"
@@ -12,8 +11,8 @@ int main() {
   tupa::sqr_wave::SqrWave wave(false);
   LED_Set();
   while (true) {
-    // LED_Toggle();
-    INF("Current count: %d.", wave.GetBurstCount());
+    LED_Toggle();
+    INF("Main loop...");
     while (++cnt % kCntMax != 0) {
     }
     wave.RunBurst(3);

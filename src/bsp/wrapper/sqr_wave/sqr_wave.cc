@@ -7,6 +7,21 @@
 
 namespace tupa::sqr_wave {
 
+void IsrCallback(uint32_t, uintptr_t obj) {
+
+  SqrWave* wave = reinterpret_cast<SqrWave*>(obj);
+  if (wave == nullptr) {
+    return;
+  }
+
+  DBG_Clear();
+  if((!wave->GetPinState()) && wave->is_burst_enabled_ && (--wave->burst_count_ == 0u)) {
+    wave->StopBurst();
+    return;
+  }
+  DBG_Set();
+}
+
 SqrWave::~SqrWave() { TCC0_CompareStop(); }
 
 void SqrWave::SetFreqHz(const uint32_t freq_hz) {
@@ -30,13 +45,21 @@ void SqrWave::SetEnable(const bool is_enabled) {
 
 bool SqrWave::RunBurst(const size_t count) {
 
-  if(burst_count_ > 0u) {
-    INF("Burst is already on, cancelling.");
+  if(is_burst_enabled_) {
+    INF("Burst is already running, cancelling.");
     return false;
   }
+
+  if(is_enabled_) {
+    INF("Frequency mode is already running, cancelling.");
+    return false;
+  }
+
   SetEnable(false);
-  burst_count_ = count > 0 ? count - 1 : 0;
+  burst_count_ = count;
+  is_burst_enabled_ = true;
   INF("Burst count is starting. count: %d.", burst_count_);
+  DBG_Set();
   SetEnable(true);
   return true;
 }
@@ -44,14 +67,7 @@ bool SqrWave::RunBurst(const size_t count) {
 void SqrWave::StopBurst() {
   SetEnable(false);
   burst_count_ = 0;
-}
-
-void SqrWave::IsrCallback(uint32_t, uintptr_t) {
-  // if(burst_count_ > 0u) {
-  //   burst_count_--;
-  // } else {
-  //   StopBurst();
-  // }
+  is_burst_enabled_ = false;
 }
 
 }  // namespace tupa::sqr_wave

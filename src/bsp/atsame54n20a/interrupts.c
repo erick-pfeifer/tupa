@@ -59,4 +59,4 @@ void SERCOM2_2_Handler() { SERCOM2_USART_InterruptHandler(); }
 
 void SERCOM2_OTHER_Handler() { SERCOM2_USART_InterruptHandler(); }
 
-void TCC0_OTHER_Handler() { TCC0_OTHER_InterruptHandler(); }
+void TCC0_MC0_Handler() { TCC0_MC0_InterruptHandler(); }
