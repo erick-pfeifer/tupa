@@ -1,0 +1,10 @@
+cc_library(
+    name = "gpio",
+    srcs = ["gpio.cc"],
+    hdrs = ["public/gpio/gpio_wrapper.h"],
+    includes = ["public/"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/bsp/atsame54n20a:peripheral",
+    ],
+)

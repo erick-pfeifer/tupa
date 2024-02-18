@@ -75,22 +75,13 @@
 #define DBG_PIN                  PORT_PIN_PC01
 
 /*** Macros for SWITCH_0 pin ***/
-#define SWITCH_0_Set()               (PORT_REGS->GROUP[2].PORT_OUTSET = ((uint32_t)1U << 2U))
-#define SWITCH_0_Clear()             (PORT_REGS->GROUP[2].PORT_OUTCLR = ((uint32_t)1U << 2U))
-#define SWITCH_0_Toggle()            (PORT_REGS->GROUP[2].PORT_OUTTGL = ((uint32_t)1U << 2U))
-#define SWITCH_0_OutputEnable()      (PORT_REGS->GROUP[2].PORT_DIRSET = ((uint32_t)1U << 2U))
-#define SWITCH_0_InputEnable()       (PORT_REGS->GROUP[2].PORT_DIRCLR = ((uint32_t)1U << 2U))
-#define SWITCH_0_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 2U)) & 0x01U)
-#define SWITCH_0_PIN                  PORT_PIN_PC02
-
-/*** Macros for SWITCH_1 pin ***/
-#define SWITCH_1_Set()               (PORT_REGS->GROUP[2].PORT_OUTSET = ((uint32_t)1U << 3U))
-#define SWITCH_1_Clear()             (PORT_REGS->GROUP[2].PORT_OUTCLR = ((uint32_t)1U << 3U))
-#define SWITCH_1_Toggle()            (PORT_REGS->GROUP[2].PORT_OUTTGL = ((uint32_t)1U << 3U))
-#define SWITCH_1_OutputEnable()      (PORT_REGS->GROUP[2].PORT_DIRSET = ((uint32_t)1U << 3U))
-#define SWITCH_1_InputEnable()       (PORT_REGS->GROUP[2].PORT_DIRCLR = ((uint32_t)1U << 3U))
-#define SWITCH_1_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 3U)) & 0x01U)
-#define SWITCH_1_PIN                  PORT_PIN_PC03
+#define SWITCH_0_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 6U))
+#define SWITCH_0_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 6U))
+#define SWITCH_0_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 6U))
+#define SWITCH_0_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 6U))
+#define SWITCH_0_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 6U))
+#define SWITCH_0_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 6U)) & 0x01U)
+#define SWITCH_0_PIN                  PORT_PIN_PB06
 
 /*** Macros for LED pin ***/
 #define LED_Set()               (PORT_REGS->GROUP[2].PORT_OUTSET = ((uint32_t)1U << 18U))
@@ -100,6 +91,15 @@
 #define LED_InputEnable()       (PORT_REGS->GROUP[2].PORT_DIRCLR = ((uint32_t)1U << 18U))
 #define LED_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 18U)) & 0x01U)
 #define LED_PIN                  PORT_PIN_PC18
+
+/*** Macros for SWITCH_1 pin ***/
+#define SWITCH_1_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 1U))
+#define SWITCH_1_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 1U))
+#define SWITCH_1_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 1U))
+#define SWITCH_1_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 1U))
+#define SWITCH_1_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 1U))
+#define SWITCH_1_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 1U)) & 0x01U)
+#define SWITCH_1_PIN                  PORT_PIN_PB01
 
 // *****************************************************************************
 /* PORT Group

@@ -3,15 +3,15 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 2,PA01,,Available,,,,,,NORMAL
 3,PC00,,Available,,,,,,NORMAL
 4,PC01,DBG,GPIO,Digital,Out,Low,,,NORMAL
-7,PC02,SWITCH_0,GPIO,Digital,In,n/a,Yes,No,NORMAL
-8,PC03,SWITCH_1,GPIO,Digital,In,n/a,Yes,No,NORMAL
+7,PC02,,Available,,,,,,NORMAL
+8,PC03,,Available,,,,,,NORMAL
 9,PA02,,Available,,,,,,NORMAL
 10,PA03,,Available,,,,,,NORMAL
 11,PB04,,Available,,,,,,NORMAL
 12,PB05,,Available,,,,,,NORMAL
 13,PD00,,Available,,,,,,NORMAL
 16,PD01,,Available,,,,,,NORMAL
-17,PB06,,Available,,,,,,NORMAL
+17,PB06,SWITCH_0,GPIO,Digital,In,n/a,Yes,No,NORMAL
 18,PB07,,Available,,,,,,NORMAL
 19,PB08,,Available,,,,,,NORMAL
 20,PB09,,Available,,,,,,NORMAL
@@ -19,7 +19,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 22,PA05,,Available,,,,,,NORMAL
 23,PA06,,Available,,,,,,NORMAL
 24,PA07,,Available,,,,,,NORMAL
-27,PC04,,TCC0_WO0,Digital,High Impedance,n/a,No,No,NORMAL
+27,PC04,,TCC0_WO0,Digital,High Impedance,n/a,No,No,STRONG
 28,PC05,,Available,,,,,,NORMAL
 29,PC06,,Available,,,,,,NORMAL
 30,PC07,,Available,,,,,,NORMAL
@@ -95,6 +95,6 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 123,PC30,,Available,,,,,,NORMAL
 124,PC31,,Available,,,,,,NORMAL
 125,PB00,,Available,,,,,,NORMAL
-126,PB01,,Available,,,,,,NORMAL
+126,PB01,SWITCH_1,GPIO,Digital,In,n/a,Yes,No,NORMAL
 127,PB02,,Available,,,,,,NORMAL
 128,PB03,,Available,,,,,,NORMAL
