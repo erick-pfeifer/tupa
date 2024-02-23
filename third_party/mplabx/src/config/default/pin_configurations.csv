@@ -6,7 +6,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 7,PC02,,Available,,,,,,NORMAL
 8,PC03,,Available,,,,,,NORMAL
 9,PA02,,Available,,,,,,NORMAL
-10,PA03,,Available,,,,,,NORMAL
+10,PA03,MOTOR_ENABLE,GPIO,Digital,In/Out,High,,,STRONG
 11,PB04,,Available,,,,,,NORMAL
 12,PB05,,Available,,,,,,NORMAL
 13,PD00,,Available,,,,,,NORMAL
@@ -94,7 +94,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 122,PB31,BTN_1,GPIO,Digital,In,n/a,Yes,No,NORMAL
 123,PC30,,Available,,,,,,NORMAL
 124,PC31,,Available,,,,,,NORMAL
-125,PB00,,Available,,,,,,NORMAL
+125,PB00,MOTOR_DIR,GPIO,Digital,In/Out,Low,,,STRONG
 126,PB01,SWITCH_1,GPIO,Digital,In,n/a,Yes,No,NORMAL
 127,PB02,,Available,,,,,,NORMAL
 128,PB03,,Available,,,,,,NORMAL

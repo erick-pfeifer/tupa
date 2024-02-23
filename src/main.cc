@@ -7,9 +7,15 @@
 
 int main() {
   SYS_Initialize(nullptr);
-  tupa::sqr_wave::SqrWave wave(tupa::gpio::GetTCC0PinState, false, 6000);
+  tupa::sqr_wave::SqrWave wave(tupa::gpio::GetTCC0PinState, false, 3000);
+
+
   INF("Main loop...");
   int state = 0;
+  MOTOR_DIR_Set(); // Goes Down.
+  // MOTOR_DIR_Clear(); // Goes Up.
+
+  MOTOR_ENABLE_Clear(); // Motor is enabled.
   while (true) {
     LED_Toggle();
     switch (state) {
@@ -17,18 +23,20 @@ int main() {
         static size_t btn_debounce = 0;
         // false => btn pressed.
         if (!BTN_1_Get() && ++btn_debounce >= 10000) {
-          INF("Button Pressed.");
-          state = 1;
+          // MOTOR_ENABLE_Clear(); // Motor is enabled.
+          INF("Button Pressed. Direction is %ld", MOTOR_DIR_Get());
+          state++;
         } else if (BTN_1_Get()) {
+          // MOTOR_ENABLE_Set();  // Motor is disabled.
           btn_debounce = 0;
         }
         break;
       }
       case 1: {
         INF("Burst Started.");
-        if (wave.RunBurst(1000)) {
+        if (wave.RunBurst(250)) {
           DBG_Set();
-          state = 2;
+          state++;
         } else {
           DBG_Clear();
           ERR("Not able to run Burst.");
@@ -37,17 +45,35 @@ int main() {
       }
       case 2: {
         if (!wave.IsBurstRunning()) {
-          INF("Burst Done.");
-          DBG_Clear();
-          state = 3;
+          state++;
         }
         break;
       }
       case 3: {
-        if (BTN_1_Get()) {
-          INF("Button Released.");
-          state = 0;
+
+        if (wave.RunBurst(250)) {
+          DBG_Set();
+          state++;
+        } else {
+          DBG_Clear();
+          ERR("Not able to run Burst.");
         }
+        break;
+      }
+      case 4: {
+        if (!wave.IsBurstRunning()) {
+          INF("Burst Done.");
+          DBG_Clear();
+          state++;
+        }
+        break;
+      }
+      case 5: {
+        state=0;
+        // if (BTN_1_Get()) {
+        //   INF("Button Released.");
+        //   state=0;
+        // }
         break;
       }
       default: {

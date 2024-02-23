@@ -74,6 +74,15 @@
 #define DBG_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 1U)) & 0x01U)
 #define DBG_PIN                  PORT_PIN_PC01
 
+/*** Macros for MOTOR_ENABLE pin ***/
+#define MOTOR_ENABLE_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = ((uint32_t)1U << 3U))
+#define MOTOR_ENABLE_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = ((uint32_t)1U << 3U))
+#define MOTOR_ENABLE_Toggle()            (PORT_REGS->GROUP[0].PORT_OUTTGL = ((uint32_t)1U << 3U))
+#define MOTOR_ENABLE_OutputEnable()      (PORT_REGS->GROUP[0].PORT_DIRSET = ((uint32_t)1U << 3U))
+#define MOTOR_ENABLE_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = ((uint32_t)1U << 3U))
+#define MOTOR_ENABLE_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 3U)) & 0x01U)
+#define MOTOR_ENABLE_PIN                  PORT_PIN_PA03
+
 /*** Macros for SWITCH_0 pin ***/
 #define SWITCH_0_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 6U))
 #define SWITCH_0_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 6U))
@@ -100,6 +109,15 @@
 #define BTN_1_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
 #define BTN_1_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
 #define BTN_1_PIN                  PORT_PIN_PB31
+
+/*** Macros for MOTOR_DIR pin ***/
+#define MOTOR_DIR_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 0U))
+#define MOTOR_DIR_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 0U))
+#define MOTOR_DIR_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 0U))
+#define MOTOR_DIR_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 0U))
+#define MOTOR_DIR_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 0U))
+#define MOTOR_DIR_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 0U)) & 0x01U)
+#define MOTOR_DIR_PIN                  PORT_PIN_PB00
 
 /*** Macros for SWITCH_1 pin ***/
 #define SWITCH_1_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 1U))
