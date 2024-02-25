@@ -51,7 +51,7 @@ pw_cc_flag_set(
         "@pw_toolchain//actions:all_c_compiler_actions",
         "@pw_toolchain//actions:all_cpp_compiler_actions",
     ],
-        flags = [
+    flags = [
         "-ffreestanding",
         "-specs=nano.specs",
         "-specs=nosys.specs",
@@ -89,7 +89,6 @@ pw_cc_flag_set(
         "-mfloat-abi=hard",
     ],
 )
-
 
 pw_cc_toolchain(
     name = "arm_gcc_toolchain_cortex-m",
