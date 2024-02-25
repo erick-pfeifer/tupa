@@ -1,22 +1,25 @@
 load(
     "@pw_toolchain//cc_toolchain:defs.bzl",
-    "ALL_ASM_ACTIONS",
-    "ALL_CPP_COMPILER_ACTIONS",
-    "ALL_C_COMPILER_ACTIONS",
-    "ALL_LINK_ACTIONS",
     "pw_cc_flag_set",
     "pw_cc_toolchain",
 )
 
 pw_cc_flag_set(
     name = "o1",
-    actions = ALL_C_COMPILER_ACTIONS + ALL_CPP_COMPILER_ACTIONS + ALL_LINK_ACTIONS,
+    actions = [
+        "@pw_toolchain//actions:all_c_compiler_actions",
+        "@pw_toolchain//actions:all_cpp_compiler_actions",
+        "@pw_toolchain//actions:all_link_actions",
+    ],
     flags = ["-O1"],
 )
 
 pw_cc_flag_set(
     name = "warnings",
-    actions = ALL_C_COMPILER_ACTIONS + ALL_CPP_COMPILER_ACTIONS,
+    actions = [
+        "@pw_toolchain//actions:all_c_compiler_actions",
+        "@pw_toolchain//actions:all_cpp_compiler_actions",
+    ],
     flags = [
         "-Wall",
         "-Wextra",
@@ -30,7 +33,12 @@ pw_cc_flag_set(
 
 pw_cc_flag_set(
     name = "thumb_abi",
-    actions = ALL_ASM_ACTIONS + ALL_C_COMPILER_ACTIONS + ALL_CPP_COMPILER_ACTIONS + ALL_LINK_ACTIONS,
+    actions = [
+        "@pw_toolchain//actions:all_asm_actions",
+        "@pw_toolchain//actions:all_c_compiler_actions",
+        "@pw_toolchain//actions:all_cpp_compiler_actions",
+        "@pw_toolchain//actions:all_link_actions",
+    ],
     flags = [
         "-mabi=aapcs",
         "-mthumb",
@@ -39,8 +47,11 @@ pw_cc_flag_set(
 
 pw_cc_flag_set(
     name = "cortex_common",
-    actions = ALL_C_COMPILER_ACTIONS + ALL_CPP_COMPILER_ACTIONS,
-    flags = [
+    actions = [
+        "@pw_toolchain//actions:all_c_compiler_actions",
+        "@pw_toolchain//actions:all_cpp_compiler_actions",
+    ],
+        flags = [
         "-ffreestanding",
         "-specs=nano.specs",
         "-specs=nosys.specs",
@@ -49,7 +60,9 @@ pw_cc_flag_set(
 
 pw_cc_flag_set(
     name = "cortex_common_link",
-    actions = ALL_LINK_ACTIONS,
+    actions = [
+        "@pw_toolchain//actions:all_link_actions",
+    ],
     flags = [
         "-Wl,--gc-sections",
         "-specs=nano.specs",
@@ -65,19 +78,15 @@ pw_cc_flag_set(
 
 pw_cc_flag_set(
     name = "cortex-m4",
-    actions = ALL_ASM_ACTIONS + ALL_C_COMPILER_ACTIONS + ALL_CPP_COMPILER_ACTIONS + ALL_LINK_ACTIONS,
+    actions = [
+        "@pw_toolchain//actions:all_asm_actions",
+        "@pw_toolchain//actions:all_c_compiler_actions",
+        "@pw_toolchain//actions:all_cpp_compiler_actions",
+        "@pw_toolchain//actions:all_link_actions",
+    ],
     flags = [
         "-mcpu=cortex-m4",
         "-mfloat-abi=hard",
-    ],
-)
-
-pw_cc_flag_set(
-    name = "cortex-m4+nofp",
-    actions = ALL_ASM_ACTIONS + ALL_C_COMPILER_ACTIONS + ALL_CPP_COMPILER_ACTIONS + ALL_LINK_ACTIONS,
-    flags = [
-        "-mcpu=cortex-m4+nofp",
-        "-mfloat-abi=soft",
     ],
 )
 
@@ -95,7 +104,6 @@ pw_cc_toolchain(
         "@pw_toolchain//flag_sets:wnon_virtual_dtor",
     ] + select({
         "@pw_toolchain//constraints/arm_mcpu:cortex-m4": [":cortex-m4"],
-        "@pw_toolchain//constraints/arm_mcpu:cortex-m4+nofp": [":cortex-m4+nofp"],
         "@pw_toolchain//constraints/arm_mcpu:none": ["@platforms//:incompatible"],
     }) + [
         ":thumb_abi",
@@ -126,7 +134,6 @@ pw_cc_toolchain(
     supports_param_files = 0,
     target_compatible_with = select({
         "@pw_toolchain//constraints/arm_mcpu:cortex-m4": [],
-        "@pw_toolchain//constraints/arm_mcpu:cortex-m4+nofp": [],
         "@pw_toolchain//constraints/arm_mcpu:none": ["@platforms//:incompatible"],
     }),
     toolchain_identifier = "arm-gcc-toolchain",
