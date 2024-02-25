@@ -9,7 +9,6 @@ int main() {
   SYS_Initialize(nullptr);
   tupa::sqr_wave::SqrWave wave(tupa::gpio::GetTCC0PinState, false, 3000);
 
-
   INF("Main loop...");
   int state = 0;
   MOTOR_DIR_Set(); // Goes Down.
@@ -24,7 +23,6 @@ int main() {
         // false => btn pressed.
         if (!BTN_1_Get() && ++btn_debounce >= 10000) {
           // MOTOR_ENABLE_Clear(); // Motor is enabled.
-          INF("Button Pressed. Direction is %ld", MOTOR_DIR_Get());
           state++;
         } else if (BTN_1_Get()) {
           // MOTOR_ENABLE_Set();  // Motor is disabled.

@@ -1,0 +1,3 @@
+workspace(
+    name = "atsame54_device_pack"
+)

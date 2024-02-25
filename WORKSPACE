@@ -51,27 +51,9 @@ cc_library(
     url = "https://github.com/ARM-software/CMSIS_5/archive/refs/heads/develop.zip",
 )
 
-http_archive(
+local_repository(
     name = "atsame54_device_pack",
-    build_file_content = """
-cc_library(
-  name = "same54n20a_deps",
-  deps = [ "@cmsis//:core", ],
-  includes = [ "include", ],
-  hdrs = glob(["include/*.h"]) +
-         glob(["include/component/*.h"]) +
-         glob(["include/instance/*.h"]) +
-         glob(["include/pio/*.h"]),
-  srcs = [ "gcc/gcc/startup_same54n20a.c" ],
-  visibility = ["//visibility:public"],
-  alwayslink = 1,
-)
-
-exports_files(["gcc/gcc/same54n20a_flash.ld"])
-    """,
-    sha256 = "3e116f672edfa97d779d8fc7f2085961ca81105c85b989d1559ad2db02290c95",
-    type = "zip",
-    url = "https://packs.download.microchip.com/Microchip.SAME54_DFP.3.8.234.atpack",
+    path = "targets/atsame54n20a/Microchip.SAME54_DFP.3.8.234",
 )
 
 local_repository(
