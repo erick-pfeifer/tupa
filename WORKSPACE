@@ -8,19 +8,27 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # https://github.com/hedronvision/bazel-compile-commands-extractor
 http_archive(
     name = "hedron_compile_commands",
+    strip_prefix = "bazel-compile-commands-extractor-33658bab23a4858b513d767480b43d3d8fb6a3d1",
 
     # Replace the commit hash (0e990032f3c5a866e72615cf67e5ce22186dcb97) in both places (below) with the latest (https://github.com/hedronvision/bazel-compile-commands-extractor/commits/main), rather than using the stale one here.
     url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/33658bab23a4858b513d767480b43d3d8fb6a3d1.tar.gz",
-    strip_prefix = "bazel-compile-commands-extractor-33658bab23a4858b513d767480b43d3d8fb6a3d1",
     # When you first run this tool, it'll recommend a sha256 hash to put here with a message like: "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by modifying arguments sha256 = ..."
 )
+
 load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
+
 hedron_compile_commands_setup()
+
 load("@hedron_compile_commands//:workspace_setup_transitive.bzl", "hedron_compile_commands_setup_transitive")
+
 hedron_compile_commands_setup_transitive()
+
 load("@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive")
+
 hedron_compile_commands_setup_transitive_transitive()
+
 load("@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive_transitive")
+
 hedron_compile_commands_setup_transitive_transitive_transitive()
 
 http_archive(
@@ -75,7 +83,11 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_python/releases/download/0.24.0/rules_python-0.24.0.tar.gz",
 )
 
-load("@rules_python//python:repositories.bzl", "py_repositories")
+load(
+    "@rules_python//python:repositories.bzl",
+    "py_repositories",
+    "python_register_toolchains",
+)
 
 py_repositories()
 
@@ -92,9 +104,9 @@ load(
 
 cipd_client_repository()
 
-load("@pigweed//pw_toolchain:register_toolchains.bzl", "register_pigweed_cxx_toolchains")
+load("//toolchain:register_toolchains.bzl", "register_cxx_toolchains")
 
-register_pigweed_cxx_toolchains()
+register_cxx_toolchains()
 
 # Get the OpenOCD binary (we'll use it for flashing).
 cipd_repository(
@@ -102,8 +114,6 @@ cipd_repository(
     path = "infra/3pp/tools/openocd/${os}-${arch}",
     tag = "version:2@0.11.0-3",
 )
-
-load("@rules_python//python:repositories.bzl", "python_register_toolchains")
 
 # Set up the Python interpreter and PyPI dependencies we'll need.
 python_register_toolchains(

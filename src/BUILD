@@ -3,15 +3,6 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 cc_binary(
     name = "device_application",
     srcs = ["main.cc"],
-    copts = [
-        "-std=c++17",
-        "-O1",
-    ],
-    linkopts = [
-        "-Wl,-print-memory-usage",
-        "-Wl,--cref",
-        "-O1",
-    ],
     malloc = select({
         "@platforms//cpu:armv7e-m": "@pigweed//pw_malloc",
         "//conditions:default": "@bazel_tools//tools/cpp:malloc",

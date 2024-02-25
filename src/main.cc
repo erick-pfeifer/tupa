@@ -7,14 +7,14 @@
 
 int main() {
   SYS_Initialize(nullptr);
-  tupa::sqr_wave::SqrWave wave(tupa::gpio::GetTCC0PinState, false, 3000);
+  tupa::sqr_wave::SqrWave wave(tupa::gpio::GetTCC0PinState, false, 3001);
 
   INF("Main loop...");
   int state = 0;
-  MOTOR_DIR_Set(); // Goes Down.
+  MOTOR_DIR_Set();  // Goes Down.
   // MOTOR_DIR_Clear(); // Goes Up.
 
-  MOTOR_ENABLE_Clear(); // Motor is enabled.
+  MOTOR_ENABLE_Clear();  // Motor is enabled.
   while (true) {
     LED_Toggle();
     switch (state) {
@@ -48,7 +48,6 @@ int main() {
         break;
       }
       case 3: {
-
         if (wave.RunBurst(250)) {
           DBG_Set();
           state++;
@@ -67,7 +66,7 @@ int main() {
         break;
       }
       case 5: {
-        state=0;
+        state = 0;
         // if (BTN_1_Get()) {
         //   INF("Button Released.");
         //   state=0;
