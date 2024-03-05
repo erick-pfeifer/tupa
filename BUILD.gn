@@ -35,16 +35,16 @@ pw_python_venv("project_build_venv") {
   source_packages = _pigweed_python_packages + _project_python_packages
 }
 
-pw_create_python_source_tree("generate_project_tools_python_package") {
+pw_python_distribution("generate_project_tools_python_package") {
   packages = _pigweed_python_packages + _project_python_packages
   generate_setup_cfg = {
     name = "project-tools"
     version = "0.0.1"
     append_date_to_version = true
+    include_default_pyproject_file = true
   }
-  extra_files = [ "//tools/pyproject.toml > pyproject.toml" ]
 }
 
-pw_internal_pip_install("pip_install_project_packages") {
+pw_python_pip_install("pip_install_project_packages") {
   packages = [ ":generate_project_tools_python_package" ]
 }

@@ -52,17 +52,42 @@ else  # All other shells: examine $0 for known shell binary filenames
 fi
 
 # Downstream projects need to set something other than PW_ROOT here, like
-# YOUR_PROJECT_ROOT. Please also set PW_ROOT before invoking pw_bootstrap or
-# pw_activate.
+# YOUR_PROJECT_ROOT. Please also set PW_PROJECT_ROOT and PW_ROOT before
+# invoking pw_bootstrap or pw_activate.
+######### BEGIN PROJECT-SPECIFIC CODE #########
 PROJECT_ROOT="$(_bootstrap_abspath "$(dirname "$_PW_BOOTSTRAP_PATH")")"
 export PROJECT_ROOT
-# Please also set PW_PROJECT_ROOT to YOUR_PROJECT_ROOT.
 PW_PROJECT_ROOT="$PROJECT_ROOT"
 PW_ROOT="$PROJECT_ROOT/third_party/pigweed"
 
+# Set your project's banner and color.
+PW_BRANDING_BANNER="$PROJECT_ROOT/tools/banner.txt"
+export PW_BRANDING_BANNER
+PW_BRANDING_BANNER_COLOR=yellow
+export PW_BRANDING_BANNER_COLOR
 
+project_banner() {
+  cat "$PW_BRANDING_BANNER"
+  echo
+}
+
+PW_BANNER_FUNC="project_banner"
+
+# Double-check that the Pigweed submodule has been checked out. The file
+# checked here is somewhat arbitrary, but should be a file path that is
+# relatively stable.
+if [ ! -e "$PW_ROOT/pw_env_setup/util.sh" ]; then
+  echo "Updating git submodules ..."
+  # Init without recursion.
+  git -C "$PROJECT_ROOT" submodule update --init
+fi
+
+########## END PROJECT-SPECIFIC CODE ##########
 export PW_PROJECT_ROOT
 export PW_ROOT
+if [ -n "$PW_BANNER_FUNC" ]; then
+  export PW_BANNER_FUNC
+fi
 
 . "$PW_ROOT/pw_env_setup/util.sh"
 
@@ -77,30 +102,24 @@ _PW_ACTUAL_ENVIRONMENT_ROOT="$(pw_get_env_root)"
 export _PW_ACTUAL_ENVIRONMENT_ROOT
 SETUP_SH="$_PW_ACTUAL_ENVIRONMENT_ROOT/activate.sh"
 
-# Downstream projects may wish to set PW_BANNER_FUNC to a function that prints
-# an ASCII art banner here.
-export PW_BRANDING_BANNER="$PROJECT_ROOT/tools/banner.txt"
-export PW_BRANDING_BANNER_COLOR=yellow
-
-modem_banner() {
-  cat "$PW_BRANDING_BANNER"
-  echo
-}
-
-PW_BANNER_FUNC="modem_banner"
-
 # Run full bootstrap when invoked as bootstrap, or env file is missing/empty.
 if [ "$(basename "$_PW_BOOTSTRAP_PATH")" = "bootstrap.sh" ] || \
   [ ! -f "$SETUP_SH" ] || \
   [ ! -s "$SETUP_SH" ]; then
-  pw_bootstrap --shell-file "$SETUP_SH" \
-               --install-dir "$_PW_ACTUAL_ENVIRONMENT_ROOT" \
-               --skip-submodule-check \
-               --config-file "$PW_PROJECT_ROOT/tools/env_setup.json"
+######### BEGIN PROJECT-SPECIFIC CODE #########
+  pw_bootstrap --shell-file "$SETUP_SH" --install-dir "$_PW_ACTUAL_ENVIRONMENT_ROOT" --config-file "$PW_PROJECT_ROOT/tools/env_setup.json"
+########## END PROJECT-SPECIFIC CODE ##########
   pw_finalize bootstrap "$SETUP_SH"
 else
   pw_activate
   pw_finalize activate "$SETUP_SH"
+fi
+
+if [ "$_PW_ENV_SETUP_STATUS" -eq 0 ]; then
+# This is where any additional checks about the environment should go.
+######### BEGIN PROJECT-SPECIFIC CODE #########
+  echo -n
+########## END PROJECT-SPECIFIC CODE ##########
 fi
 
 unset _pw_sourced
@@ -108,4 +127,18 @@ unset _PW_BOOTSTRAP_PATH
 unset SETUP_SH
 unset _bootstrap_abspath
 
+if [[ "$TERM" != dumb ]]; then
+  # Shell completion: bash.
+  if test -n "$BASH"; then
+    . "$PW_ROOT/pw_cli/py/pw_cli/shell_completion/pw.bash"
+    . "$PW_ROOT/pw_cli/py/pw_cli/shell_completion/pw_build.bash"
+  # Shell completion: zsh.
+  elif test -n "$ZSH_NAME"; then
+    . "$PW_ROOT/pw_cli/py/pw_cli/shell_completion/pw.zsh"
+    . "$PW_ROOT/pw_cli/py/pw_cli/shell_completion/pw_build.zsh"
+  fi
+fi
+
 pw_cleanup
+
+git -C "$PW_ROOT" config blame.ignoreRevsFile .git-blame-ignore-revs
