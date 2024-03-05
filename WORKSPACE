@@ -104,12 +104,9 @@ load(
 
 cipd_client_repository()
 
-# Dedicated toolchain is commented out until it is stable.
-# load("//toolchain:register_toolchains.bzl", "register_cxx_toolchains")
-# register_cxx_toolchains()
+load("//toolchain:register_toolchains.bzl", "register_cxx_toolchains")
+register_cxx_toolchains()
 
-load("@pigweed//pw_toolchain:register_toolchains.bzl", "register_pigweed_cxx_toolchains")
-register_pigweed_cxx_toolchains()
 
 # Get the OpenOCD binary (we'll use it for flashing).
 cipd_repository(
