@@ -2,5 +2,44 @@
 # our toolchains, and CI VMs may not have any local toolchain to detect.
 common --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
 
+# TODO: https://pwbug.dev/258836641#comment4: Enabling bzlmod breaks the build.
+common --noenable_bzlmod
+
+# Improve debugability by printing all arguments for failing commands.
+common --verbose_failures
+
+# Prints all build commands
+common --subcommands
+
+# TODO: https://pwbug.dev/319664275: Disable hermetic sandbox tmp due to issues
+# with arm toolchain.
+build --noincompatible_sandbox_hermetic_tmp
+
 # Required for new toolchain resolution API.
-build --incompatible_enable_cc_toolchain_resolution --spawn_strategy=standalone --verbose_failures --subcommands
+build --incompatible_enable_cc_toolchain_resolution
+
+# Silence all C/C++ warnings in external code.
+#
+# Note that this will not silence warnings from external headers #include'd in
+# first-party code.
+common --per_file_copt=external/.*@-w
+common --host_per_file_copt=external/.*@-w
+
+# Don't automatically create __init__.py files.
+#
+# This prevents spurious package name collisions at import time, and should be
+# the default (https://github.com/bazelbuild/bazel/issues/7386). It's
+# particularly helpful for Pigweed, because we have many potential package name
+# collisions due to a profusion of stuttering paths like
+# pw_transfer/py/pw_transfer.
+common --incompatible_default_to_explicit_init_py
+
+# Specifies desired output mode for running tests.
+# Valid values are
+#   'summary' to output only test status summary
+#   'errors' to also print test logs for failed tests
+#   'all' to print logs for all tests
+#   'streamed' to output logs for all tests in real time
+#     (this will force tests to be executed locally one at a time regardless
+#     of --test_strategy value).
+test --test_output=all
