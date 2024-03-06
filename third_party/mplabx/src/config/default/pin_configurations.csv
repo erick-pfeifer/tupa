@@ -11,7 +11,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 12,PB05,,Available,,,,,,NORMAL
 13,PD00,,Available,,,,,,NORMAL
 16,PD01,,Available,,,,,,NORMAL
-17,PB06,SWITCH_0,GPIO,Digital,In,n/a,Yes,No,NORMAL
+17,PB06,LOW_LIMIT_SENSOR,GPIO,Digital,In,n/a,Yes,No,NORMAL
 18,PB07,,Available,,,,,,NORMAL
 19,PB08,,Available,,,,,,NORMAL
 20,PB09,,Available,,,,,,NORMAL
@@ -81,7 +81,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 102,PB26,,Available,,,,,,NORMAL
 103,PB27,,Available,,,,,,NORMAL
 104,PB28,,Available,,,,,,NORMAL
-105,PB29,,Available,,,,,,NORMAL
+105,PB29,BTN_LEFT,GPIO,Digital,In,n/a,Yes,No,NORMAL
 108,PC24,,Available,,,,,,NORMAL
 109,PC25,,Available,,,,,,NORMAL
 110,PC26,,Available,,,,,,NORMAL
@@ -91,10 +91,10 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 119,PA30,,Available,,,,,,NORMAL
 120,PA31,,Available,,,,,,NORMAL
 121,PB30,,Available,,,,,,NORMAL
-122,PB31,BTN_1,GPIO,Digital,In,n/a,Yes,No,NORMAL
+122,PB31,BTN_BOARD,GPIO,Digital,In,n/a,Yes,No,NORMAL
 123,PC30,,Available,,,,,,NORMAL
 124,PC31,,Available,,,,,,NORMAL
 125,PB00,MOTOR_DIR,GPIO,Digital,In/Out,Low,,,STRONG
-126,PB01,SWITCH_1,GPIO,Digital,In,n/a,Yes,No,NORMAL
+126,PB01,BTN_RIGHT,GPIO,Digital,In,n/a,Yes,No,NORMAL
 127,PB02,,Available,,,,,,NORMAL
 128,PB03,,Available,,,,,,NORMAL

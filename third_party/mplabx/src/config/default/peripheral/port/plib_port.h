@@ -83,14 +83,14 @@
 #define MOTOR_ENABLE_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 3U)) & 0x01U)
 #define MOTOR_ENABLE_PIN                  PORT_PIN_PA03
 
-/*** Macros for SWITCH_0 pin ***/
-#define SWITCH_0_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 6U))
-#define SWITCH_0_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 6U))
-#define SWITCH_0_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 6U))
-#define SWITCH_0_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 6U))
-#define SWITCH_0_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 6U))
-#define SWITCH_0_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 6U)) & 0x01U)
-#define SWITCH_0_PIN                  PORT_PIN_PB06
+/*** Macros for LOW_LIMIT_SENSOR pin ***/
+#define LOW_LIMIT_SENSOR_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 6U))
+#define LOW_LIMIT_SENSOR_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 6U))
+#define LOW_LIMIT_SENSOR_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 6U))
+#define LOW_LIMIT_SENSOR_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 6U))
+#define LOW_LIMIT_SENSOR_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 6U))
+#define LOW_LIMIT_SENSOR_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 6U)) & 0x01U)
+#define LOW_LIMIT_SENSOR_PIN                  PORT_PIN_PB06
 
 /*** Macros for LED pin ***/
 #define LED_Set()               (PORT_REGS->GROUP[2].PORT_OUTSET = ((uint32_t)1U << 18U))
@@ -101,14 +101,23 @@
 #define LED_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 18U)) & 0x01U)
 #define LED_PIN                  PORT_PIN_PC18
 
-/*** Macros for BTN_1 pin ***/
-#define BTN_1_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
-#define BTN_1_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))
-#define BTN_1_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 31U))
-#define BTN_1_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 31U))
-#define BTN_1_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
-#define BTN_1_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
-#define BTN_1_PIN                  PORT_PIN_PB31
+/*** Macros for BTN_LEFT pin ***/
+#define BTN_LEFT_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 29U))
+#define BTN_LEFT_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 29U))
+#define BTN_LEFT_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 29U))
+#define BTN_LEFT_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 29U))
+#define BTN_LEFT_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 29U))
+#define BTN_LEFT_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 29U)) & 0x01U)
+#define BTN_LEFT_PIN                  PORT_PIN_PB29
+
+/*** Macros for BTN_BOARD pin ***/
+#define BTN_BOARD_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
+#define BTN_BOARD_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))
+#define BTN_BOARD_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 31U))
+#define BTN_BOARD_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 31U))
+#define BTN_BOARD_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
+#define BTN_BOARD_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
+#define BTN_BOARD_PIN                  PORT_PIN_PB31
 
 /*** Macros for MOTOR_DIR pin ***/
 #define MOTOR_DIR_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 0U))
@@ -119,14 +128,14 @@
 #define MOTOR_DIR_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 0U)) & 0x01U)
 #define MOTOR_DIR_PIN                  PORT_PIN_PB00
 
-/*** Macros for SWITCH_1 pin ***/
-#define SWITCH_1_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 1U))
-#define SWITCH_1_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 1U))
-#define SWITCH_1_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 1U))
-#define SWITCH_1_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 1U))
-#define SWITCH_1_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 1U))
-#define SWITCH_1_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 1U)) & 0x01U)
-#define SWITCH_1_PIN                  PORT_PIN_PB01
+/*** Macros for BTN_RIGHT pin ***/
+#define BTN_RIGHT_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 1U))
+#define BTN_RIGHT_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 1U))
+#define BTN_RIGHT_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 1U))
+#define BTN_RIGHT_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 1U))
+#define BTN_RIGHT_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 1U))
+#define BTN_RIGHT_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 1U)) & 0x01U)
+#define BTN_RIGHT_PIN                  PORT_PIN_PB01
 
 // *****************************************************************************
 /* PORT Group
