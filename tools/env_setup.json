@@ -7,7 +7,8 @@
         "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/arm.json",
         "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/bazel.json",
         "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/python.json",
-        "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/luci.json"
+        "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/luci.json",
+        "third_party/pigweed/pw_env_setup/py/pw_env_setup/cipd_setup/clang_next.json"
       ],
       "virtualenv": {
         "gn_root": ".",

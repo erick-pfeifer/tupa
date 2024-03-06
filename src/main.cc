@@ -11,7 +11,6 @@ int main() {
   INF("Startup instantiations done.");
 
   while (true) {
-    LED_Toggle();
   }
   return 0;
 }

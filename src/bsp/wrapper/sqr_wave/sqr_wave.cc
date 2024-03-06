@@ -1,5 +1,6 @@
 #include "sqr_wave/sqr_wave.h"
 
+#include <cstddef>
 #include <cstdint>
 
 #include "pw_log/shorter.h"

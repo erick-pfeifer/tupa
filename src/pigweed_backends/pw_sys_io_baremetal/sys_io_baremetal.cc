@@ -1,8 +1,7 @@
-#include <cinttypes>
 #include <cstddef>
 
-#include "pw_span/span.h"
 #include "pw_status/status.h"
+#include "pw_status/status_with_size.h"
 #include "pw_sys_io/sys_io.h"
 #include "sercom/usart/plib_sercom2_usart.h"
 

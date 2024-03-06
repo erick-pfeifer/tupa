@@ -11,6 +11,7 @@ pw_python_package("tools") {
   sources = [
     "pw_plugins/__init__.py",
     "pw_plugins/presubmit_checks.py",
+    "pw_plugins/run_tidy.py",
   ]
 
   python_deps = [

@@ -1,4 +1,5 @@
 # <name> <Python module> <function>
 
 presubmit pw_plugins.presubmit_checks main
-ide pw_ide.__main__ main
+tidy      pw_plugins.run_tidy         main
+ide       pw_ide.__main__             main

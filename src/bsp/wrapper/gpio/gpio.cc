@@ -1,5 +1,6 @@
 #include "gpio/gpio_wrapper.h"
 #include "peripheral/port/plib_port.h"
+#include "same54p20a.h"
 
 namespace tupa::gpio {
 

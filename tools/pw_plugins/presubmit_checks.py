@@ -10,9 +10,12 @@ from pathlib import Path
 
 import pw_cli.log
 import pw_presubmit
-from pw_presubmit import (PresubmitContext, cli, cpp_checks, format_code,
-                          git_repo, inclusive_language, install_hook,
-                          python_checks, todo_check)
+from pw_presubmit import (PresubmitContext, PresubmitResult, cli, cpp_checks,
+                          format_code, git_repo, inclusive_language,
+                          install_hook, python_checks, todo_check)
+
+from pw_plugins import (
+    run_tidy, )
 
 __LOG = logging.getLogger(__name__)
 
@@ -28,11 +31,23 @@ PATH_EXCLUSIONS = [
 TODO_CHECK_PATTERN = re.compile(r'(?:\bTODO\(#issue-\d+(?:, ?b/\d+)*\).*\w)|'
                                 r'(?:\bTODO: #issue-\d+(?:, ?b/\d+)* - )')
 
+
+def run_tidy_presubmit(_: PresubmitContext) -> PresubmitResult:
+    try:
+        run_tidy.main()
+    except SystemExit as e:
+        if e.code != 0:
+            raise pw_presubmit.PresubmitFailure
+    return PresubmitResult.PASS
+
+
 QUICK = (
     todo_check.create(TODO_CHECK_PATTERN),
     format_code.presubmit_checks(),
     inclusive_language.presubmit_check,
     cpp_checks.pragma_once,
+    # turn tidy pre-requisite back on when clang-tidy is working.
+    # run_tidy_presubmit,
 )
 
 # TODO(#issue-1971402255): Add more presubmit checks.
