@@ -43,3 +43,11 @@ common --incompatible_default_to_explicit_init_py
 #     (this will force tests to be executed locally one at a time regardless
 #     of --test_strategy value).
 test --test_output=all
+
+# Defines which framework to be used in unit tests. This is already using the
+# default value but is added here for clarification.
+common --@pigweed//targets:pw_unit_test_backend=@pigweed//pw_unit_test:light
+
+# Defines the main target which will run tests in a main loop. This is already
+# using the default value but is added here for clarification.
+common --@pigweed//targets:pw_unit_test_main=@pigweed//pw_unit_test:simple_printing_main
