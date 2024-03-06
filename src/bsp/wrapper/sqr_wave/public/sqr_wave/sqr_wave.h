@@ -10,9 +10,9 @@ namespace tupa::sqr_wave {
 using IsrCallbackType = void (*)(long unsigned int, unsigned int);
 using GetStateStateFunction = bool (*)(void);
 
-inline constexpr uint32_t kFreqHzDefault = 1000;
+inline constexpr uint32_t kFreqHzDefault = 4000;
 inline constexpr uint32_t kFreqHzMax = 6000;
-inline constexpr bool kIsEnabledDefault = true;
+inline constexpr bool kIsEnabledDefault = false;
 
 inline constexpr uint32_t kTicksPerSecond = (CPU_CLOCK_FREQUENCY / 4) - 50000;
 

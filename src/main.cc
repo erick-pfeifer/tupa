@@ -1,5 +1,3 @@
-#include <cstddef>
-
 #include "definitions.h"
 #include "gpio/gpio_wrapper.h"
 #include "pw_log/shorter.h"
@@ -7,7 +5,7 @@
 
 int main() {
   SYS_Initialize(nullptr);
-  tupa::sqr_wave::SqrWave wave(tupa::gpio::GetTCC0PinState, false, 4000);
+  tupa::sqr_wave::SqrWave wave(tupa::gpio::GetTCC0PinState);
 
   INF("Main loop...");
   MOTOR_ENABLE_Set();  // Motor is disabled.
