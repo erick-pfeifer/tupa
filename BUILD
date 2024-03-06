@@ -14,5 +14,6 @@ refresh_compile_commands(
     targets = {
       "//:app.elf": "--cpu=armv7e-m",
       "//src/app/piston_control:piston_control_test" : "",
+      "//src/app/buttons:buttons_test" : "",
     },
 )
