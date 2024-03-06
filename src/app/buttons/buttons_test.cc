@@ -1,7 +1,7 @@
 
 #include "buttons/buttons.h"
 
-#include "pw_unit_test/framework.h"
+#include "pw_unit_test/framework_backend.h"
 
 namespace tupa::buttons {
 namespace {

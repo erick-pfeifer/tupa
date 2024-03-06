@@ -8,6 +8,9 @@ Checks: >
   -clang-analyzer-*,
 
   cppcoreguidelines-*,
+  -cppcoreguidelines-avoid-c-arrays,
+  -cppcoreguidelines-avoid-macro-usage,
+  -cppcoreguidelines-avoid-magic-numbers,
   -cppcoreguidelines-pro-type-const-cast,
   -cppcoreguidelines-pro-type-reinterpret-cast,
   -cppcoreguidelines-pro-type-vararg,
@@ -29,6 +32,7 @@ Checks: >
 
   google-runtime-operator,
 
+  misc-include-cleaner,
   misc-static-assert,
   misc-unconventional-assign-operator,
   misc-unused-using-decls,
@@ -71,9 +75,7 @@ Checks: >
   readability-redundant-smartptr-get,
   readability-string-compare,
 
-WarningsAsErrors: *
-
-HeaderFilterRegex: '.*'
+WarningsAsErrors: '*'
 
 CheckOptions:
   -

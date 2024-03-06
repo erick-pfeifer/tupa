@@ -1,7 +1,7 @@
 
 #include "piston_control/piston_control.h"
 
-#include "pw_unit_test/framework.h"
+#include "pw_unit_test/framework_backend.h"
 
 namespace tupa::piston_control {
 namespace {

@@ -17,5 +17,8 @@ pw_cc_test(
     name = "piston_control_test",
     srcs = ["piston_control_test.cc"],
     visibility = ["//visibility:public"],
-    deps = [":piston_control"],
+    deps = [
+        ":piston_control",
+        "@pigweed//pw_unit_test:light",
+    ],
 )
