@@ -105,8 +105,8 @@ load(
 cipd_client_repository()
 
 load("//toolchain:register_toolchains.bzl", "register_cxx_toolchains")
-register_cxx_toolchains()
 
+register_cxx_toolchains()
 
 # Get the OpenOCD binary (we'll use it for flashing).
 cipd_repository(

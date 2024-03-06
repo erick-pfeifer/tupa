@@ -10,13 +10,12 @@ cc_library(
     includes = ["public/"],
     visibility = ["//visibility:public"],
     deps = [
-
     ],
 )
 
 pw_cc_test(
     name = "piston_control_test",
-    srcs = [ "piston_control_test.cc" ],
-    deps = [ ":piston_control" ],
+    srcs = ["piston_control_test.cc"],
     visibility = ["//visibility:public"],
+    deps = [":piston_control"],
 )

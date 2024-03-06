@@ -1,14 +1,14 @@
 
-#include "pw_unit_test/framework.h"
-
 #include "buttons/buttons.h"
 
+#include "pw_unit_test/framework.h"
+
 namespace tupa::buttons {
-namespace  {
+namespace {
 
 TEST(ButtonsTest, Trivial) {
-  [[maybe_unused]]Buttons buttons;
+  [[maybe_unused]] Buttons buttons;
   EXPECT_TRUE(true);
 }
-}
-}
+}  // namespace
+}  // namespace tupa::buttons

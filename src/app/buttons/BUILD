@@ -10,13 +10,12 @@ cc_library(
     includes = ["public/"],
     visibility = ["//visibility:public"],
     deps = [
-
     ],
 )
 
 pw_cc_test(
     name = "buttons_test",
-    srcs = [ "buttons_test.cc" ],
-    deps = [ ":buttons" ],
+    srcs = ["buttons_test.cc"],
     visibility = ["//visibility:public"],
+    deps = [":buttons"],
 )

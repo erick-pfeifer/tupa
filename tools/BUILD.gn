@@ -5,7 +5,6 @@ pw_python_package("tools") {
   setup = [
     "pyproject.toml",
     "setup.cfg",
-    # "setup.py",
   ]
 
   # Placeholder. Add python scripts for plugins here.
