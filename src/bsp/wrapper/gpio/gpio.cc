@@ -1,5 +1,5 @@
 #include "gpio/gpio_wrapper.h"
-#include "definitions.h"
+#include "peripheral/port/plib_port.h"
 
 namespace tupa::gpio {
 
@@ -29,7 +29,7 @@ void SetMotorEnablePin(bool state) {
 }
 
 void SetBoardLEDPin(bool state) {
-  state ? LED_Set() : LED_Clear();
+  state ? LED_Set() : MOTOR_ENABLE_Clear();
 }
 
 
