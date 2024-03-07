@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "definitions.h"
+#include "gpio/gpio_wrapper.h"
 #include "tcc/plib_tcc0.h"
 
 namespace tupa::sqr_wave {
@@ -16,18 +17,24 @@ inline constexpr bool kIsEnabledDefault = false;
 
 inline constexpr uint32_t kTicksPerSecond = (CPU_CLOCK_FREQUENCY / 4) - 50000;
 
-void IsrCallback(uint32_t, uintptr_t obj);
-
 class SqrWave {
  public:
+  /**
+   * @brief Factory method for SqrWave, uses a singleton pattern.
+   *
+   * @return Reference to SqrWave.
+   */
+  static SqrWave& GetInstance() {
+    static SqrWave instance(tupa::gpio::GetTCC0PinState);
+    return instance;
+  }
+
   SqrWave(GetStateStateFunction get_pin_state,
           bool is_enabled = kIsEnabledDefault,
           uint32_t freq_hz = kFreqHzDefault,
           IsrCallbackType isr_callback =
               reinterpret_cast<IsrCallbackType>(&IsrCallback))
-      : freq_hz_(freq_hz),
-        is_enabled_(is_enabled),
-        get_pin_state_(get_pin_state) {
+      : freq_hz_(freq_hz), get_pin_state_(get_pin_state) {
     SetFreqHz(freq_hz_);
     SetEnable(is_enabled);
 
@@ -49,10 +56,10 @@ class SqrWave {
   inline size_t GetBurstCount() const { return burst_count_; }
 
  private:
-  friend void IsrCallback(uint32_t, uintptr_t obj);
+  static void IsrCallback(uint32_t, uintptr_t obj);
 
   uint32_t freq_hz_;
-  bool is_enabled_;
+  bool is_enabled_ = false;
   size_t burst_count_ = 0u;
   bool is_burst_enabled_ = false;
   GetStateStateFunction get_pin_state_;

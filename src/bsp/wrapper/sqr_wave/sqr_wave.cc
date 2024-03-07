@@ -8,7 +8,7 @@
 
 namespace tupa::sqr_wave {
 
-void IsrCallback(uint32_t, uintptr_t obj) {
+void SqrWave::IsrCallback(uint32_t, uintptr_t obj) {
   SqrWave* wave = reinterpret_cast<SqrWave*>(obj);
   if (wave == nullptr) {
     return;

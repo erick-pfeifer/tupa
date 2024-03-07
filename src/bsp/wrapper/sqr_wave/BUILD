@@ -5,7 +5,8 @@ cc_library(
     includes = ["public/"],
     visibility = ["//visibility:public"],
     deps = [
-        "@atsame54_device_pack//:same54n20a_deps",
+        "//src/bsp/atsame54n20a:peripheral",
+        "//src/bsp/wrapper/gpio",
         "@pigweed//pw_log",
     ],
 )
