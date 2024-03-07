@@ -25,7 +25,8 @@ REPOS = (PROJECT_ROOT, )
 
 PATH_EXCLUSIONS = [
     re.compile(r'^.gitmodules'),
-    re.compile(r'^src/bsp/atsame54n20a.*')
+    re.compile(r'^src/bsp/atsame54n20a.*'),
+    re.compile(r'^third_party.*'),
 ]
 
 TODO_CHECK_PATTERN = re.compile(r'(?:\bTODO\(#issue-\d+(?:, ?b/\d+)*\).*\w)|'

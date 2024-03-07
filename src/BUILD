@@ -9,6 +9,7 @@ cc_binary(
     }),
     visibility = ["//:__pkg__"],
     deps = [
+        "@pigweed//pw_chrono:system_clock",
         "@pigweed//pw_log",
         "@pigweed//targets:pw_assert_backend_impl",
     ] + select({
@@ -18,7 +19,6 @@ cc_binary(
             "//src/bsp/atsame54n20a:init",
             "//src/bsp/atsame54n20a:peripheral",
             "//src/bsp/wrapper/sqr_wave",
-            "//src/bsp/wrapper/gpio",
             # Resolves dependencies to lib nano (_write, _read, etc) with stubs.
             "@pigweed//pw_toolchain/arm_gcc:arm_none_eabi_gcc_support",
         ],

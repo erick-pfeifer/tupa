@@ -7,6 +7,7 @@ def _device_transition_impl(settings, attr):
         "@pigweed//targets:pw_sys_io_backend": "//src/pigweed_backends/pw_sys_io_baremetal:impl",
         "@pigweed//targets:pw_log_backend": "@pigweed//pw_log_basic",
         "@pigweed//targets:pw_assert_backend": "@pigweed//pw_assert_basic",
+        "@pigweed//targets:pw_chrono_system_clock_backend": "//src/pigweed_backends/pw_chrono_system_clock_atsame54:impl",
     }
 
 _device_transition = transition(
@@ -18,6 +19,7 @@ _device_transition = transition(
         "@pigweed//targets:pw_sys_io_backend",
         "@pigweed//targets:pw_log_backend",
         "@pigweed//targets:pw_assert_backend",
+        "@pigweed//targets:pw_chrono_system_clock_backend",
     ],
 )
 

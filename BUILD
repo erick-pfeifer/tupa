@@ -14,7 +14,7 @@ refresh_compile_commands(
         "//:app.elf": "--cpu=armv7e-m",
         # Test files are failing to build with these options,
         # need to figure out the proper way to add them here.
-        # "//src/app/piston_control:piston_control_test": "--cpu=x86_64",
-        # "//src/app/buttons:buttons_test": "--cpu=x86_64",
+        "//src/app/piston_control:piston_control_test": "--cpu=x86_64",
+        "//src/app/buttons:buttons_test": "--cpu=x86_64",
     },
 )
