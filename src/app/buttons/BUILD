@@ -10,6 +10,9 @@ cc_library(
     includes = ["public/"],
     visibility = ["//visibility:public"],
     deps = [
+        "@pigweed//pw_chrono:system_clock",
+        "@pigweed//pw_function",
+        "@pigweed//pw_status",
     ],
 )
 
@@ -19,6 +22,8 @@ pw_cc_test(
     visibility = ["//visibility:public"],
     deps = [
         ":buttons",
+        "//src/bsp/wrapper/gpio:fake_gpio",
+        "@pigweed//pw_chrono:simulated_system_clock",
         "@pigweed//pw_unit_test:light",
     ],
 )
