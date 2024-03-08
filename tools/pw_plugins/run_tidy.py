@@ -10,8 +10,10 @@ from pathlib import Path
 import pw_cli.log
 
 __LOG = logging.getLogger(__name__)
+PROJECT_ROOT = Path(os.environ['PROJECT_ROOT'])
 
 FILE_LIST = ['src/main.cc', 'src/app/.*', 'src/pigweed_backends/.*']
+CLANG_TIDY_CONFIG = ['-config-file', str(PROJECT_ROOT / Path('.clang-tidy'))]
 
 
 def main() -> int:
@@ -22,7 +24,8 @@ def main() -> int:
         __LOG.error('Failed to run bazel command to generate json script.')
         sys.exit(process.returncode)
 
-    command = ['run-clang-tidy', '-use-color=1'] + FILE_LIST
+    command = ['run-clang-tidy', '-use-color=1'
+               ] + CLANG_TIDY_CONFIG + FILE_LIST
 
     __LOG.info(f'Running clang-tidy: {command}')
     process = subprocess.run(command, check=True)
