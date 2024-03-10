@@ -4,24 +4,25 @@ load(
 )
 
 cc_library(
-    name = "buttons",
-    srcs = ["buttons.cc"],
-    hdrs = ["public/buttons/buttons.h"],
+    name = "button",
+    srcs = ["button.cc"],
+    hdrs = ["public/button/button.h"],
     includes = ["public/"],
     visibility = ["//visibility:public"],
     deps = [
         "@pigweed//pw_chrono:system_clock",
+        "@pigweed//pw_containers:vector",
         "@pigweed//pw_function",
         "@pigweed//pw_status",
     ],
 )
 
 pw_cc_test(
-    name = "buttons_test",
-    srcs = ["buttons_test.cc"],
+    name = "button_test",
+    srcs = ["button_test.cc"],
     visibility = ["//visibility:public"],
     deps = [
-        ":buttons",
+        ":button",
         "//src/bsp/wrapper/gpio:fake_gpio",
         "@pigweed//pw_chrono:simulated_system_clock",
         "@pigweed//pw_unit_test:light",
