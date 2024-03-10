@@ -19,7 +19,7 @@ cc_binary(
             "//targets/atsame54n20a:pre_init",
             "//src/bsp/atsame54n20a:init",
             "//src/bsp/atsame54n20a:peripheral",
-            "//src/bsp/wrapper/sqr_wave",
+            "//src/bsp/wrapper/sqr_wave:sqr_wave_same54",
             # Resolves dependencies to lib nano (_write, _read, etc) with stubs.
             "@pigweed//pw_toolchain/arm_gcc:arm_none_eabi_gcc_support",
         ],
