@@ -31,7 +31,7 @@ class Button {
          pw::chrono::VirtualSystemClock& clock =
              pw::chrono::VirtualSystemClock::RealClock())
       : get_pin_func_(std::move(get_pin_func)), clock_(clock) {}
-  ~Button() = default;
+  virtual ~Button() = default;
 
   /**
    * @brief Main function that runs logic to determine if a button is pressed.
@@ -39,7 +39,7 @@ class Button {
    * @return pw::Status Returns OK if process was successfull, error code
    * otherwise.
    */
-  pw::Status Process();
+  virtual pw::Status Process();
 
   /**
    * @brief Return button state.
@@ -49,7 +49,7 @@ class Button {
    *
    * @return ButtonState struct containing button state.
    */
-  const ButtonState& GetButtonState() const { return state_; }
+  virtual const ButtonState& GetButtonState() const { return state_; }
 
  private:
   pw::chrono::VirtualSystemClock& clock_;
