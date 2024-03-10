@@ -10,7 +10,7 @@ using PinFunction = pw::Function<bool(void)>;
 using TimeDuration = pw::chrono::SystemClock::duration;
 using TimePoint = pw::chrono::SystemClock::time_point;
 
-inline constexpr TimeDuration kPinDebounceDuration =
+inline constexpr TimeDuration kPinDefaultDebounceDuration =
     TimeDuration(std::chrono::milliseconds(5));
 
 class Button {
@@ -29,8 +29,11 @@ class Button {
 
   Button(PinFunction&& get_pin_func,
          pw::chrono::VirtualSystemClock& clock =
-             pw::chrono::VirtualSystemClock::RealClock())
-      : get_pin_func_(std::move(get_pin_func)), clock_(clock) {}
+             pw::chrono::VirtualSystemClock::RealClock(),
+         TimeDuration debounce_duration = kPinDefaultDebounceDuration)
+      : get_pin_func_(std::move(get_pin_func)),
+        debounce_duration_(debounce_duration),
+        clock_(clock) {}
   virtual ~Button() = default;
 
   /**
@@ -57,6 +60,7 @@ class Button {
   ButtonState state_;
   bool instant_press_state_ = false;
   TimePoint debounce_start_time_point_;
+  TimeDuration debounce_duration_;
 };
 
 }  // namespace tupa::button

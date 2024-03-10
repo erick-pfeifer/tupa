@@ -26,7 +26,7 @@ pw::Status Button::Process() {
 
   TimeDuration current_duration = clock_.now() - debounce_start_time_point_;
 
-  if (current_duration > kPinDebounceDuration) {
+  if (current_duration > debounce_duration_) {
     state_.is_pressed = true;
     state_.pressed_duration = current_duration;
   }

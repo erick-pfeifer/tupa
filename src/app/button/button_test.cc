@@ -17,11 +17,11 @@ Button::ButtonState kButtonPressed(true);
 // A short time duration is used to advance the simulated clock short of the
 // minimun debounce time, using the debounce duration as reference, and dividing
 // by 10 to make it shorter.
-constexpr TimeDuration kShortTimeDuration = kPinDebounceDuration / 10;
+constexpr TimeDuration kShortTimeDuration = kPinDefaultDebounceDuration / 10;
 
 // A long time duration is used to advance the simulated clock enough to
 // trigger a button to be pressed.
-constexpr TimeDuration kLongTimeDuration = kPinDebounceDuration * 2;
+constexpr TimeDuration kLongTimeDuration = kPinDefaultDebounceDuration * 2;
 
 constexpr size_t kBouncingCounts = 200;
 
