@@ -6,7 +6,6 @@
 namespace tupa::sqr_wave {
 class SqrWave {
  public:
-  SqrWave() = default;
   virtual ~SqrWave() = default;
 
   virtual void SetEnable(const bool is_enabled) = 0;
@@ -17,9 +16,7 @@ class SqrWave {
 
   virtual bool RunBurst(const size_t count) = 0;
   virtual inline bool IsBurstRunning() const = 0;
-  virtual void StopBurst();
+  virtual void StopBurst() = 0;
   virtual inline size_t GetBurstCount() const = 0;
-
- private:
 };
 }  // namespace tupa::sqr_wave

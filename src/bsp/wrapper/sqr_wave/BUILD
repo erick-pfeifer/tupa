@@ -21,3 +21,13 @@ cc_library(
         "@pigweed//pw_log",
     ],
 )
+
+cc_library(
+    name = "fake_sqr_wave",
+    hdrs = ["public/sqr_wave/fake_sqr_wave.h"],
+    includes = ["public/"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":sqr_wave",
+    ],
+)
