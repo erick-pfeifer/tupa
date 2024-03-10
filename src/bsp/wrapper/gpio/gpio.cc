@@ -21,6 +21,6 @@ void SetMotorEnablePin(bool state) {
   state ? MOTOR_ENABLE_Set() : MOTOR_ENABLE_Clear();
 }
 
-void SetBoardLEDPin(bool state) { state ? LED_Set() : MOTOR_ENABLE_Clear(); }
+void SetBoardLedPin(bool state) { state ? LED_Set() : LED_Clear(); }
 
 }  // namespace tupa::gpio

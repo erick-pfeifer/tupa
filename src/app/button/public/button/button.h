@@ -27,7 +27,9 @@ class Button {
     }
   };
 
-  Button(PinFunction&& get_pin_func, pw::chrono::VirtualSystemClock& clock)
+  Button(PinFunction&& get_pin_func,
+         pw::chrono::VirtualSystemClock& clock =
+             pw::chrono::VirtualSystemClock::RealClock())
       : get_pin_func_(std::move(get_pin_func)), clock_(clock) {}
   ~Button() = default;
 
