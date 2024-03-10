@@ -11,7 +11,7 @@ using TimeDuration = pw::chrono::SystemClock::duration;
 using TimePoint = pw::chrono::SystemClock::time_point;
 
 inline constexpr TimeDuration kPinDefaultDebounceDuration =
-    TimeDuration(std::chrono::milliseconds(5));
+    TimeDuration(std::chrono::milliseconds(20));
 
 class Button {
  public:

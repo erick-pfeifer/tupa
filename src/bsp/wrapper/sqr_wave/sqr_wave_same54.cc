@@ -24,8 +24,9 @@ void SqrWaveSamE54::SetFreqHz(const uint32_t freq_hz) {
   uint32_t ticks =
       kTicksPerSecond / (freq_hz < kFreqHzMax ? freq_hz : kFreqHzMax);
 
-  TCC0_Compare24bitMatchSet(TCC0_CHANNEL0, ticks);
-  freq_hz_ = freq_hz;
+  if (TCC0_Compare24bitMatchSet(TCC0_CHANNEL0, ticks)) {
+    freq_hz_ = freq_hz;
+  }
 }
 
 void SqrWaveSamE54::SetEnable(const bool is_enabled) {

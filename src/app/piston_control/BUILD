@@ -10,6 +10,12 @@ cc_library(
     includes = ["public/"],
     visibility = ["//visibility:public"],
     deps = [
+        "//src/app/button",
+        "//src/bsp/wrapper/sqr_wave",
+        "@pigweed//pw_chrono:system_clock",
+        "@pigweed//pw_function",
+        "@pigweed//pw_log",
+        "@pigweed//pw_status",
     ],
 )
 
@@ -19,6 +25,10 @@ pw_cc_test(
     visibility = ["//visibility:public"],
     deps = [
         ":piston_control",
+        "//src/app/button",
+        "//src/app/button:fake_button",
+        "//src/bsp/wrapper/sqr_wave:fake_sqr_wave",
+        "@pigweed//pw_chrono:simulated_system_clock",
         "@pigweed//pw_unit_test:light",
     ],
 )

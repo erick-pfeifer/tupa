@@ -11,7 +11,7 @@ pw_cc_flag_set(
         "@pw_toolchain//actions:all_cpp_compiler_actions",
         "@pw_toolchain//actions:all_link_actions",
     ],
-    flags = ["-O1"],
+    flags = ["-O0"],
 )
 
 pw_cc_flag_set(

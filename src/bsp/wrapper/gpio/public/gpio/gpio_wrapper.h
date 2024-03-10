@@ -49,6 +49,13 @@ void SetDbgPin(bool state);
 void SetMotorEnablePin(bool state);
 
 /**
+ * @brief Set the Motor Direction Pin.
+ *
+ * @param state True/False for high/low states.
+ */
+void SetMotorDiretionPin(bool state);
+
+/**
  * @brief Set the Board LED Pin.
  *
  * @param state True/False for high/low states.

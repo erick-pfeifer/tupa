@@ -6,7 +6,7 @@
 
 namespace tupa::button {
 
-class FakeButton : Button {
+class FakeButton : public Button {
  public:
   FakeButton(ButtonState initial_state)
       : state_(initial_state),

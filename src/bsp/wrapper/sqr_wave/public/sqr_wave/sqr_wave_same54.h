@@ -4,6 +4,7 @@
 
 #include "definitions.h"
 #include "gpio/gpio_wrapper.h"
+#include "pw_log/shorter.h"
 #include "sqr_wave/sqr_wave.h"
 #include "tcc/plib_tcc0.h"
 
@@ -12,7 +13,7 @@ namespace tupa::sqr_wave {
 using IsrCallbackType = void (*)(long unsigned int, unsigned int);
 using GetStateStateFunction = bool (*)(void);
 
-inline constexpr uint32_t kFreqHzDefault = 4000;
+inline constexpr uint32_t kFreqHzDefault = 5000;
 inline constexpr uint32_t kFreqHzMax = 6000;
 inline constexpr bool kIsEnabledDefault = false;
 

@@ -10,6 +10,7 @@ cc_binary(
     visibility = ["//:__pkg__"],
     deps = [
         "//src/app/button",
+        "//src/app/piston_control",
         "@pigweed//pw_chrono:system_clock",
         "@pigweed//pw_log",
         "@pigweed//targets:pw_assert_backend_impl",
