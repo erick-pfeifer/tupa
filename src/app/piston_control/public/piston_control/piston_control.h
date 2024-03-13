@@ -13,12 +13,12 @@ using OutputPinFunction = void (*)(bool);
 using TimeDuration = pw::chrono::SystemClock::duration;
 using TimePoint = pw::chrono::SystemClock::time_point;
 
-inline constexpr uint32_t kMotorSpeedFast = 5000u;
+inline constexpr uint32_t kMotorSpeedFast = 4000u;
 inline constexpr uint32_t kMotorSpeedSlow = 2000u;
 
-inline constexpr uint32_t kBurstCountToPressPosition = 13800;
-inline constexpr uint32_t kBurstCountFromPressToReleasePosition = 2000;
-inline constexpr uint32_t kBurstCountFromReleaseToExtractPosition = 9000;
+inline constexpr uint32_t kBurstCountToPressPosition = 20000;
+inline constexpr uint32_t kBurstCountFromPressToReleasePosition = 100;
+inline constexpr uint32_t kBurstCountFromReleaseToExtractPosition = 20800;
 
 inline constexpr TimeDuration kTimeToWaitOnPressedPosition =
     TimeDuration(std::chrono::milliseconds(500));

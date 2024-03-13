@@ -66,16 +66,18 @@ pw::Status PistonControl::Process() {
         INF("StateMachine: Done Waiting, moving to released.");
         MotorDirectionDown();
         MotorEnable();
-        motor_sqr_wave_.SetFreqHz(kMotorSpeedSlow);
-        motor_sqr_wave_.RunBurst(kBurstCountFromPressToReleasePosition);
+        motor_sqr_wave_.StopBurst();
+        motor_sqr_wave_.SetFreqHz(kMotorSpeedFast);
+        motor_sqr_wave_.SetEnable(true);
         state_ = StateMachine::kDriveToReleasePostion;
       }
       break;
     }
 
     case StateMachine::kDriveToReleasePostion: {
-      if (!motor_sqr_wave_.IsBurstRunning()) {
+      if (low_limit_btn_.GetButtonState().is_pressed) {
         MotorDisable();
+        motor_sqr_wave_.SetEnable(false);
         INF("StateMachine: In release position.");
         state_ = StateMachine::kWaitingOnReleasePostion;
       }
@@ -83,17 +85,13 @@ pw::Status PistonControl::Process() {
     }
 
     case StateMachine::kWaitingOnReleasePostion: {
-      if (left_btn_.GetButtonState().is_pressed) {
-        INF("StateMachine: Reset, going to init state.");
-        state_ = StateMachine::kInit;
-        break;
-      }
 
       if (right_btn_.GetButtonState().is_pressed) {
         INF("StateMachine: Moving to extract position.");
         MotorDirectionUp();
         MotorEnable();
         motor_sqr_wave_.SetFreqHz(kMotorSpeedFast);
+        motor_sqr_wave_.SetEnable(false);
         motor_sqr_wave_.RunBurst(kBurstCountFromReleaseToExtractPosition);
         state_ = StateMachine::kDriveToExtractPostion;
         break;
