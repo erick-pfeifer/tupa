@@ -101,6 +101,15 @@
 #define LED_Get()               (((PORT_REGS->GROUP[2].PORT_IN >> 18U)) & 0x01U)
 #define LED_PIN                  PORT_PIN_PC18
 
+/*** Macros for HIGH_LIMIT_SENSOR pin ***/
+#define HIGH_LIMIT_SENSOR_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 28U))
+#define HIGH_LIMIT_SENSOR_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 28U))
+#define HIGH_LIMIT_SENSOR_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 28U))
+#define HIGH_LIMIT_SENSOR_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 28U))
+#define HIGH_LIMIT_SENSOR_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 28U))
+#define HIGH_LIMIT_SENSOR_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 28U)) & 0x01U)
+#define HIGH_LIMIT_SENSOR_PIN                  PORT_PIN_PB28
+
 /*** Macros for BTN_LEFT pin ***/
 #define BTN_LEFT_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 29U))
 #define BTN_LEFT_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 29U))

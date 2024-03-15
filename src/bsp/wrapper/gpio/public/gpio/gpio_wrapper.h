@@ -35,6 +35,22 @@ bool GetBtnRightPinState();
 bool GetLowLimitSensorPinState();
 
 /**
+ * @brief Get the High Limit Sensor Pin State.
+ *
+ * @return true
+ * @return false
+ */
+bool GetHighLimitSensorPinState();
+
+/**
+ * @brief Get the board Pin State.
+ *
+ * @return true
+ * @return false
+ */
+bool GetBoardPinState();
+
+/**
  * @brief Set the debug pin state
  *
  * @param state True/False for high/low states.

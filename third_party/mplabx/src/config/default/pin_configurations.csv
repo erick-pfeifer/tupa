@@ -80,7 +80,7 @@ Pin Number,Pin ID,Custom Name,Function,Mode, Direction,Latch,Pull Up,Pull Down,D
 101,PB25,,SERCOM2_PAD0,Digital,High Impedance,n/a,No,No,NORMAL
 102,PB26,,Available,,,,,,NORMAL
 103,PB27,,Available,,,,,,NORMAL
-104,PB28,,Available,,,,,,NORMAL
+104,PB28,HIGH_LIMIT_SENSOR,GPIO,Digital,In,n/a,Yes,No,NORMAL
 105,PB29,BTN_LEFT,GPIO,Digital,In,n/a,Yes,No,NORMAL
 108,PC24,,Available,,,,,,NORMAL
 109,PC25,,Available,,,,,,NORMAL

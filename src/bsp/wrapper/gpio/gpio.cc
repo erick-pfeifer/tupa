@@ -15,6 +15,10 @@ bool GetBtnRightPinState() { return BTN_RIGHT_Get() != 0; }
 
 bool GetLowLimitSensorPinState() { return LOW_LIMIT_SENSOR_Get() != 0; }
 
+bool GetHighLimitSensorPinState() { return HIGH_LIMIT_SENSOR_Get() != 0; }
+
+bool GetBoardPinState() { return BTN_BOARD_Get() != 0; }
+
 void SetDbgPin(bool state) { state ? DBG_Set() : DBG_Clear(); }
 
 void SetMotorEnablePin(bool state) {
