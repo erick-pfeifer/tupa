@@ -20,9 +20,14 @@ int main() {
       tupa::gpio::GetLowLimitSensorPinState,
       pw::chrono::VirtualSystemClock::RealClock(),
       std::chrono::milliseconds(1));
+  tupa::button::Button high_limit_btn(
+      tupa::gpio::GetHighLimitSensorPinState,
+      pw::chrono::VirtualSystemClock::RealClock(),
+      std::chrono::milliseconds(1));
 
   tupa::piston_control::PistonControl piston_control(
       low_limit_btn,
+      high_limit_btn,
       left_btn,
       right_btn,
       tupa::gpio::SetMotorEnablePin,
@@ -31,12 +36,37 @@ int main() {
 
   INF("Startup instantiations done.");
 
+  // If the board pin is pressed at startup, enter manual mode.
+  // In this mode the left pin moves the piston down, and the right button moves
+  // the piston up.
+  bool run_in_manual_mode = !tupa::gpio::GetBoardPinState();
+
   while (true) {
     DBG_Toggle();
     left_btn.Process();
     right_btn.Process();
     low_limit_btn.Process();
-    piston_control.Process();
+    high_limit_btn.Process();
+
+    if(!run_in_manual_mode) {
+      LED_Clear();
+      piston_control.Process();
+    } else {
+      LED_Set();
+      if(left_btn.GetButtonState().is_pressed && !low_limit_btn.GetButtonState().is_pressed) {
+        sqr_wave.SetEnable(true);
+        sqr_wave.SetFreqHz(3000);
+        tupa::gpio::SetMotorDiretionPin(true);
+        tupa::gpio::SetMotorEnablePin(false);
+      } else if(right_btn.GetButtonState().is_pressed && !high_limit_btn.GetButtonState().is_pressed) {
+        sqr_wave.SetEnable(true);
+        sqr_wave.SetFreqHz(3000);
+        tupa::gpio::SetMotorDiretionPin(false);
+        tupa::gpio::SetMotorEnablePin(false);
+      } else {
+        tupa::gpio::SetMotorEnablePin(true);
+      }
+    }
   }
   return 0;
 }
