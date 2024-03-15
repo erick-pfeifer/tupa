@@ -13,7 +13,7 @@ using OutputPinFunction = void (*)(bool);
 using TimeDuration = pw::chrono::SystemClock::duration;
 using TimePoint = pw::chrono::SystemClock::time_point;
 
-inline constexpr uint32_t kMotorSpeedFast = 4000u;
+inline constexpr uint32_t kMotorSpeedFast = 3000u;
 inline constexpr uint32_t kMotorSpeedSlow = 2000u;
 
 inline constexpr uint32_t kBurstCountToPressPosition = 20000;
@@ -37,6 +37,7 @@ enum class StateMachine : uint8_t {
 class PistonControl {
  public:
   PistonControl(button::Button& low_limit_btn,
+                button::Button& high_limit_btn,
                 button::Button& left_btn,
                 button::Button& right_btn,
                 OutputPinFunction motor_enable_pin_set_func,
@@ -45,6 +46,7 @@ class PistonControl {
                 pw::chrono::VirtualSystemClock& clock =
                     pw::chrono::VirtualSystemClock::RealClock())
       : low_limit_btn_(low_limit_btn),
+        high_limit_btn_(high_limit_btn),
         left_btn_(left_btn),
         right_btn_(right_btn),
         motor_enable_pin_set_func_(motor_enable_pin_set_func),
@@ -65,6 +67,12 @@ class PistonControl {
   pw::Status Process();
 
   /**
+   * @brief Manual piston control with buttons.
+   *
+   */
+  void ManualControl();
+
+  /**
    * @brief Get the state machine current state
    *
    * @return StateMachine state.
@@ -73,6 +81,7 @@ class PistonControl {
 
  private:
   button::Button& low_limit_btn_;
+  button::Button& high_limit_btn_;
   button::Button& left_btn_;
   button::Button& right_btn_;
   OutputPinFunction motor_enable_pin_set_func_;

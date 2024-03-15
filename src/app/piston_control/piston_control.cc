@@ -85,7 +85,6 @@ pw::Status PistonControl::Process() {
     }
 
     case StateMachine::kWaitingOnReleasePostion: {
-
       if (right_btn_.GetButtonState().is_pressed) {
         INF("StateMachine: Moving to extract position.");
         MotorDirectionUp();
@@ -116,6 +115,22 @@ pw::Status PistonControl::Process() {
       ERR("Bad Piston Control state.");
   }
   return pw::OkStatus();
+}
+
+void PistonControl::ManualControl() {
+  if (left_btn_.GetButtonState().is_pressed &&
+      !low_limit_btn_.GetButtonState().is_pressed) {
+    motor_sqr_wave_.SetEnable(true);
+    MotorDirectionDown();
+    MotorEnable();
+  } else if (right_btn_.GetButtonState().is_pressed &&
+             !high_limit_btn_.GetButtonState().is_pressed) {
+    motor_sqr_wave_.SetEnable(true);
+    MotorDirectionUp();
+    MotorEnable();
+  } else {
+    MotorDisable();
+  }
 }
 
 }  // namespace tupa::piston_control

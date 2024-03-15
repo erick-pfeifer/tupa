@@ -37,9 +37,11 @@ int main() {
   INF("Startup instantiations done.");
 
   // If the board pin is pressed at startup, enter manual mode.
-  // In this mode the left pin moves the piston down, and the right button moves
+  // In this mode, the left btn moves the piston down, and the right btn moves
   // the piston up.
   bool run_in_manual_mode = !tupa::gpio::GetBoardPinState();
+  // LED will be OFF in manual mode (false, turns the LED on).
+  tupa::gpio::SetBoardLedPin(run_in_manual_mode);
 
   while (true) {
     DBG_Toggle();
@@ -48,24 +50,10 @@ int main() {
     low_limit_btn.Process();
     high_limit_btn.Process();
 
-    if(!run_in_manual_mode) {
-      LED_Clear();
-      piston_control.Process();
+    if (run_in_manual_mode) {
+      piston_control.ManualControl();
     } else {
-      LED_Set();
-      if(left_btn.GetButtonState().is_pressed && !low_limit_btn.GetButtonState().is_pressed) {
-        sqr_wave.SetEnable(true);
-        sqr_wave.SetFreqHz(3000);
-        tupa::gpio::SetMotorDiretionPin(true);
-        tupa::gpio::SetMotorEnablePin(false);
-      } else if(right_btn.GetButtonState().is_pressed && !high_limit_btn.GetButtonState().is_pressed) {
-        sqr_wave.SetEnable(true);
-        sqr_wave.SetFreqHz(3000);
-        tupa::gpio::SetMotorDiretionPin(false);
-        tupa::gpio::SetMotorEnablePin(false);
-      } else {
-        tupa::gpio::SetMotorEnablePin(true);
-      }
+      piston_control.Process();
     }
   }
   return 0;
