@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "armToolchainPath": "${workspaceFolder}/environment/cipd/packages/arm/bin",
+      "serverpath": "${workspaceFolder}/environment/cipd/packages/pigweed/bin/openocd",
+      "name": "Debug Launch (OpenOCD)",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/bazel-bin/app.elf",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      "interface": "swd",
+      "device": "ATSAME54P20A",
+      "runToEntryPoint": "main",
+      "svdFile": "${workspaceFolder}/targets/atsame54n20a/Microchip.SAME54_DFP.3.8.234/svd/ATSAME54P20A.svd",
+      "configFiles": [
+          "/private/var/tmp/_bazel_erickpfeifer/a4f7e0cd51e66aaca4c7d15b5de42839/external/openocd/scripts/interface/cmsis-dap.cfg",
+          "/private/var/tmp/_bazel_erickpfeifer/a4f7e0cd51e66aaca4c7d15b5de42839/external/openocd/scripts/target/atsame5x.cfg",
+      ],
+      "preLaunchCommands": [
+          "set mem inaccessible-by-default off",
+          "monitor reset"
+      ],
+      "postLaunchCommands": [
+          "monitor reset init",
+          "monitor sleep 200"
+      ]
+  },
+
+  ],
+}
