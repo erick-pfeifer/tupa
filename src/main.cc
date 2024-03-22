@@ -42,6 +42,7 @@ int main() {
   bool run_in_manual_mode = !tupa::gpio::GetBoardPinState();
   // LED will be OFF in manual mode (false, turns the LED on).
   tupa::gpio::SetBoardLedPin(run_in_manual_mode);
+  INF("Running application in %s mode", run_in_manual_mode ? "MANUAL" : "AUTO");
 
   while (true) {
     DBG_Toggle();

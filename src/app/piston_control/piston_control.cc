@@ -120,16 +120,26 @@ pw::Status PistonControl::Process() {
 void PistonControl::ManualControl() {
   if (left_btn_.GetButtonState().is_pressed &&
       !low_limit_btn_.GetButtonState().is_pressed) {
+    if (!motor_sqr_wave_.GetEnable()) {
+      INF("Going down (left button pressed).");
+    }
     motor_sqr_wave_.SetEnable(true);
     MotorDirectionDown();
     MotorEnable();
   } else if (right_btn_.GetButtonState().is_pressed &&
              !high_limit_btn_.GetButtonState().is_pressed) {
+    if (!motor_sqr_wave_.GetEnable()) {
+      INF("Going up (right button pressed).");
+    }
     motor_sqr_wave_.SetEnable(true);
     MotorDirectionUp();
     MotorEnable();
   } else {
+    if (motor_sqr_wave_.GetEnable()) {
+      INF("Stop.");
+    }
     MotorDisable();
+    motor_sqr_wave_.SetEnable(false);
   }
 }
 
