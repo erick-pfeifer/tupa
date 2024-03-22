@@ -14,14 +14,14 @@ using TimeDuration = pw::chrono::SystemClock::duration;
 using TimePoint = pw::chrono::SystemClock::time_point;
 
 inline constexpr uint32_t kMotorSpeedFast = 5000u;
-inline constexpr uint32_t kMotorSpeedSlow = 2000u;
+inline constexpr uint32_t kMotorSpeedSlow = 1000u;
 
-inline constexpr uint32_t kBurstCountToPressPosition1 = 10000;
-inline constexpr uint32_t kBurstCountToPressPosition2 = 5000;
+inline constexpr uint32_t kBurstCountToPressPosition1 = 14000;
+inline constexpr uint32_t kBurstCountToPressPosition2 = 2000;
 inline constexpr uint32_t kBurstCountFromPressToReleasePosition = 1000;
 
 inline constexpr TimeDuration kTimeToWaitOnPressedPosition =
-    TimeDuration(std::chrono::milliseconds(5000));
+    TimeDuration(std::chrono::milliseconds(500));
 
 enum class StateMachine : uint8_t {
   kInit,
