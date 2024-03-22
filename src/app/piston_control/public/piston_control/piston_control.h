@@ -13,21 +13,22 @@ using OutputPinFunction = void (*)(bool);
 using TimeDuration = pw::chrono::SystemClock::duration;
 using TimePoint = pw::chrono::SystemClock::time_point;
 
-inline constexpr uint32_t kMotorSpeedFast = 3000u;
+inline constexpr uint32_t kMotorSpeedFast = 5000u;
 inline constexpr uint32_t kMotorSpeedSlow = 2000u;
 
-inline constexpr uint32_t kBurstCountToPressPosition = 20000;
-inline constexpr uint32_t kBurstCountFromPressToReleasePosition = 100;
-inline constexpr uint32_t kBurstCountFromReleaseToExtractPosition = 20800;
+inline constexpr uint32_t kBurstCountToPressPosition1 = 10000;
+inline constexpr uint32_t kBurstCountToPressPosition2 = 5000;
+inline constexpr uint32_t kBurstCountFromPressToReleasePosition = 1000;
 
 inline constexpr TimeDuration kTimeToWaitOnPressedPosition =
-    TimeDuration(std::chrono::milliseconds(500));
+    TimeDuration(std::chrono::milliseconds(5000));
 
 enum class StateMachine : uint8_t {
   kInit,
   kLowLimitIsPressed,
   kDriveToLowLimit,
-  kDriveToPressPostion,
+  kDriveToPressPosition1,
+  kDriveToPressPosition2,
   kWaitBeforeRelease,
   kDriveToReleasePostion,
   kWaitingOnReleasePostion,
