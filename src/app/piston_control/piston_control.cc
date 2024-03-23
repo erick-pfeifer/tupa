@@ -64,6 +64,17 @@ pw::Status PistonControl::Process() {
 
     case StateMachine::kDriveToPressPosition2: {
       if (!motor_sqr_wave_.IsBurstRunning()) {
+        MotorDirectionUp();
+        MotorEnable();
+        motor_sqr_wave_.SetFreqHz(kMotorSpeedFast);
+        motor_sqr_wave_.RunBurst(kBurstCountToPressPosition3);
+        state_ = StateMachine::kDriveToPressPosition3;
+      }
+      break;
+    }
+
+    case StateMachine::kDriveToPressPosition3: {
+      if (!motor_sqr_wave_.IsBurstRunning()) {
         INF("StateMachine: Press is done, short delay before release.");
         wait_time_point_begin_ = clock_.now();
         state_ = StateMachine::kWaitBeforeRelease;
